@@ -7,7 +7,6 @@
  */
 require_once 'AutoPacketTool.php';
 
-echo 'test';
 if (file_exists("/tmp/lock.file")) {
     echo "有进程正在打包中,请稍候再试";
     exit(1);
