@@ -57,7 +57,7 @@ if ($git_status) {
     exit(1);
 }
 
-$xb_c = "./QDXbPHP.sh $cur_branch $target $ipa_name $base_path";
+$xb_c = "./QDXbPHP.sh $cur_branch $target $ipa_name $base_path 2>&1";
 $unlock_c = "security -v unlock-keychain -p \"123456\" ~/Library/Keychains/login.keychain-db";
 $xb_shell = gd_shell_array([$cd_script_c, $unlock_c, $xb_c]);
 #echo $xb_shell . PHP_EOL;
