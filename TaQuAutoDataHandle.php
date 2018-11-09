@@ -7,6 +7,12 @@
  */
 require_once 'AutoPacketTool.php';
 
+echo 'test';
+if (file_exists("/tmp/lock.file")) {
+    echo "有进程正在打包中,请稍候再试";
+    exit(1);
+}
+
 $mount_path= "/Volumes/packages";
 $live_path = $mount_path . "/iOS迭代安装包/直播";
 $forum_path = $mount_path . "/iOS迭代安装包/社区";
@@ -60,7 +66,6 @@ if ($git_checkout_status) {
 
 $git_pull_c = "git pull origin $cur_branch";
 $git_pull_shell = gd_shell_array([$cd_git_c, $git_pull_c]);
-echo $git_pull_shell;
 exec($git_pull_shell, $git_pull_result, $git_pull_status);
 if ($git_pull_status) {
     print_r($git_pull_result);
