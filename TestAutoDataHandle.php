@@ -62,7 +62,7 @@ $unlock_c = "security -v unlock-keychain -p \"123456\" ~/Library/Keychains/login
 $xb_shell = gd_shell_array([$cd_script_c, $unlock_c, $xb_c]);
 #echo $xb_shell . PHP_EOL;
 exec($xb_shell, $xb_result, $xb_status);
-echo $xb_shell . PHP_EOL;
+#echo $xb_shell . PHP_EOL;
 if ($xb_status) {
     $xb_result_str = implode("\n", $xb_result);
     echo $xb_result_str;
