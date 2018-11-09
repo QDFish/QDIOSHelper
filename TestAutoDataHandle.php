@@ -70,5 +70,4 @@ if ($xb_status) {
     exit(1);
 } else {
     echo end($xb_result);
-    echo 'ccc';
 }
