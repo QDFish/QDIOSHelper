@@ -63,7 +63,6 @@ $xb_shell = gd_shell_array([$cd_script_c, $unlock_c, $xb_c]);
 #echo $xb_shell . PHP_EOL;
 $last_c = exec($xb_shell, $xb_result, $xb_status);
 #echo $xb_shell . PHP_EOL;
-echo "cc" . $last_c;
 if ($xb_status) {
     $xb_result_str = implode("\n", $xb_result);
     echo $xb_result_str;
@@ -71,4 +70,5 @@ if ($xb_status) {
     exit(1);
 } else {
     echo end($xb_result);
+    echo 'ccc';
 }
