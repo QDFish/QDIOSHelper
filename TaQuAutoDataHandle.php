@@ -21,7 +21,7 @@ $test_path = $mount_path . "/iOS迭代安装包/内测包";
 
 $date = date('Ymd');
 
-$cur_branch = $_POST['cur_branch'];
+$select_branch = $_POST['select_branch'];
 $target = $_POST['target'];
 $ext = $_POST['ext'];
 $group = $_POST['group'];
@@ -53,17 +53,21 @@ switch ($group) {
     default:
 }
 
-$git_checkout_c = "git checkout $cur_branch";
-$git_checkout_shell = gd_shell_array([$cd_git_c, $git_checkout_c]);
-echo $git_checkout_shell;
-exec($git_checkout_shell, $git_checkout_result, $git_checkout_status);
-if ($git_checkout_status) {
-    print_r($git_checkout_result);
-    echo 'checkout failed';
-    exit(1);
+$cur_branch= "git symbolic-ref --short -q HEAD";
+
+if ($cur_branch != $select_branch) {
+    $git_checkout_c = "git checkout $select_branch";
+    $git_checkout_shell = gd_shell_array([$cd_git_c, $git_checkout_c]);
+    echo $git_checkout_shell;
+    exec($git_checkout_shell, $git_checkout_result, $git_checkout_status);
+    if ($git_checkout_status) {
+        print_r($git_checkout_result);
+        echo 'checkout failed';
+        exit(1);
+    }
 }
 
-$git_pull_c = "git pull origin $cur_branch";
+$git_pull_c = "git pull origin $select_branch";
 $git_pull_shell = gd_shell_array([$cd_git_c, $git_pull_c]);
 exec($git_pull_shell, $git_pull_result, $git_pull_status);
 if ($git_pull_status) {
@@ -73,7 +77,7 @@ if ($git_pull_status) {
 }
 
 $unlock_c = "security -v unlock-keychain -p \"123456\" ~/Library/Keychains/login.keychain-db";
-$xb_c = "./QDXbPHP.sh $cur_branch $target $ipa_name $base_path";
+$xb_c = "./QDXbPHP.sh $select_branch $target $ipa_name $base_path";
 $xb_shell = gd_shell_array([$cd_script_c, $unlock_c, $xb_c]);
 #echo $xb_shell . PHP_EOL;
 exec($xb_shell, $xb_result, $xb_status);

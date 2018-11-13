@@ -41,7 +41,7 @@ echo "<h1>iOS打包</h1>";
 echo "<p><img src=\"/saya.gif\"/></p>";
 echo "<form action='TaQuAutoDataHandle.php' method='post' onsubmit='return CheckPost();'>";
 echo "当前分支: ";
-echo "<select name=\"cur_branch\">";
+echo "<select name=\"select_branch\">";
 foreach ($branch_list_result as $branch) {
     $value = end(explode(DIRECTORY_SEPARATOR, $branch));
 
