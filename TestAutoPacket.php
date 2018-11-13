@@ -69,7 +69,6 @@ echo "<input type=\"text\" name=\"dir\">";
 echo "<br />";
 echo "<br />";
 echo "<font color='red'>ps:打包需要大概10到20分钟<font><br/>";
-echo "<font color='red'>&nbsp&nbsp&nbsp&nbsp同时打包机子扛不住<font>";
 
 echo <<<HTMLFoot
 <br><br>

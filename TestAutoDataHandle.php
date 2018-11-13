@@ -7,6 +7,11 @@
  */
 require_once 'AutoPacketTool.php';
 
+if (file_exists("/tmp/lock.file")) {
+    echo "有进程正在打包中,请稍候再试";
+    exit(1);
+}
+
 $mount_path= "/Volumes/packages";
 $live_path = $mount_path . "/iOS迭代安装包/直播";
 $forum_path = $mount_path . "/iOS迭代安装包/社区";
