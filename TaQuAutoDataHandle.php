@@ -55,7 +55,7 @@ switch ($group) {
 
 $git_checkout_c = "git checkout $cur_branch";
 $git_checkout_shell = gd_shell_array([$cd_git_c, $git_checkout_c]);
-echo $git_checkout_shell
+echo $git_checkout_shell;
 exec($git_checkout_shell, $git_checkout_result, $git_checkout_status);
 if ($git_checkout_status) {
     print_r($git_checkout_result);
