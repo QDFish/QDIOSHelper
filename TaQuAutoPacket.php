@@ -9,10 +9,11 @@ require_once 'AutoPacketTool.php';
 
 ///Users/zgzheng/TouchiOS_new
 $cd_c = "cd /Users/guess/TaQu";
+$fetch_c = "git fetch origin";
 $branch_list_c = "git branch -r";
 $cur_branch_c= "git symbolic-ref --short -q HEAD";
 
-$branch_list_shell = gd_shell_array([$cd_c, $branch_list_c]);
+$branch_list_shell = gd_shell_array([$cd_c, $fetch_c, $branch_list_c]);
 exec($branch_list_shell, $branch_list_result, $branch_list_status);
 if($branch_list_status){
     echo "获取分支列表失败";
