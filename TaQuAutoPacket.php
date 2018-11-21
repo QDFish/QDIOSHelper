@@ -65,7 +65,7 @@ echo "<p><img src=\"/saya.gif\"/></p>";
 //var_dump( $version_dic );
 //echo '</pre>';
 echo "<form action='TaQuAutoDataHandle.php' method='post' onsubmit='return CheckPost();'>";
-echo "当前分支: ";
+echo "<font color='black'>当前分支: <font>";
 echo "<select name=\"select_branch\">";
 foreach ($branch_list_result as $branch) {
     $value = end(explode(DIRECTORY_SEPARATOR, $branch));
