@@ -58,7 +58,7 @@ function change() {
 <body>
 HTMLHeader;
 echo "<h1>iOS打包</h1>";
-echo "<h3><font color='red'>灰度的选项无效,需要工程布置,具体询问各项目开发人员<font></h3>";
+echo "<font color='red'><h3>灰度的选项无效,需要工程布置,具体询问各项目开发人员</h3><font>";
 echo "<p><img src=\"/saya.gif\"/></p>";
 //echo '<pre>';
 //var_dump( $build_dic );
