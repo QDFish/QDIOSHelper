@@ -6,7 +6,7 @@
  * Time: 下午3:49
  */
 
-$pro_path = "/Users/zgzheng/TouchiOS_new";
+$pro_path = "/Users/guess/TaQu";
 $cd_script_c ="cd /Users/guess/AP_TaQu";
 
 //$pro_path = "/Users/zgzheng/TouchiOS_new";
