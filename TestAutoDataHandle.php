@@ -26,6 +26,8 @@ $target = $_POST['target'];
 $ext = $_POST['ext'];
 $group = $_POST['group'];
 $dir = $_POST['dir'];
+
+
 $cd_script_c ="cd /Users/guess/AP_Test";
 $cd_git_c = "cd /Users/guess/MyTest";
 

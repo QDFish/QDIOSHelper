@@ -6,6 +6,7 @@
  * Time: 上午11:55
  */
 require_once 'AutoPacketTool.php';
+require_once 'AutoPacketConstant.php';
 
 if (file_exists("/tmp/lock.file")) {
     echo "有进程正在打包中,请稍候再试";
@@ -26,8 +27,11 @@ $target = $_POST['target'];
 $ext = $_POST['ext'];
 $group = $_POST['group'];
 $dir = $_POST['dir'];
-$cd_script_c ="cd /Users/guess/AP_TaQu";
-$cd_git_c = "cd /Users/guess/TaQu";
+
+$version = $_POST['version'];
+$build = $_POST['build'];
+$gray = $_POST['is_gray'];
+
 
 switch ($group) {
     case "1":
@@ -53,12 +57,31 @@ switch ($group) {
     default:
 }
 
-$cur_branch= "git symbolic-ref --short -q HEAD";
+
+$git_reset_c = "git reset --hard";
+$git_reset_shell = gd_shell_array([$cd_git_c, $git_reset_c]);
+exec($git_reset_shell, $git_reset_result, $git_reset_status);
+if ($git_reset_status) {
+    print_r($git_reset_result);
+    echo 'git reset failed';
+    exit(1);
+}
+
+$cur_branch_c = "git symbolic-ref --short -q HEAD";
+$cur_branch_shell = gd_shell_array([$cd_git_c, $cur_branch_c]);
+exec($cur_branch_shell, $git_curbranch_result, $git_curbranch_status);
+if ($git_curbranch_status) {
+    print_r($git_curbranch_result);
+    echo 'get current branch failed';
+    exit(1);
+}
+
+$cur_branch = array_pop($git_curbranch_result);
 
 if ($cur_branch != $select_branch) {
     $git_checkout_c = "git checkout $select_branch";
     $git_checkout_shell = gd_shell_array([$cd_git_c, $git_checkout_c]);
-   # echo $git_checkout_shell;
+//    echo $git_checkout_shell;
     exec($git_checkout_shell, $git_checkout_result, $git_checkout_status);
     if ($git_checkout_status) {
         print_r($git_checkout_result);
@@ -75,6 +98,47 @@ if ($git_pull_status) {
     echo 'pull failed';
     exit(1);
 }
+
+require_once 'iOSPlistInit.php';
+
+
+if ($target == $test_target_key) {
+    $verson_value = $test_plist_arr->get($version_key);
+    $build_value = $test_plist_arr->get($build_key);
+    $verson_value->setValue($version);
+    $build_value->setValue($build);
+    $test_plist->save($plist_paths[$test_target_key], \CFPropertyList\CFPropertyList::FORMAT_XML);
+} else if ($target == $build_target_key) {
+    $verson_value = $build_plist_arr->get($version_key);
+    $build_value = $build_plist_arr->get($build_key);
+    $verson_value->setValue($version);
+    $build_value->setValue($build);
+    
+}
+
+
+if ($gray_value != null) {
+    $gray_value->setValue($gray);
+    $build_plist->save($plist_paths[$build_target_key], \CFPropertyList\CFPropertyList::FORMAT_XML);
+}
+
+
+//$git_add_c = "git add .";
+//$git_commit_c = "git commit -m 'refresh plist'";
+//$git_push_c = "git push origin " . $cur_branch;
+//$git_push_shell = gd_shell_array([$cd_git_c, "git config --global user.name", $git_add_c, $git_commit_c, $git_push_c]);
+//echo $git_push_shell;
+//exec($git_push_shell, $git_push_result, $git_push_status);
+//if ($git_push_status) {
+//    print_r($git_push_result);
+//    echo 'push failed';
+//    exit(1);
+//}
+
+//echo 'test-----';
+//
+//
+//exit(1);
 
 $unlock_c = "security -v unlock-keychain -p \"123456\" ~/Library/Keychains/login.keychain-db";
 $xb_c = "./QDXbPHP.sh $select_branch $target $ipa_name $base_path";
