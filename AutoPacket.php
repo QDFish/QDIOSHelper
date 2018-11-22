@@ -90,7 +90,7 @@ function HttpGet(theUrl) {
 HTMLHeader;
 echo "<h1>iOS打包</h1>";
 echo "<font color='red'><h3>灰度的选项无效,需要工程布置,具体询问各项目开发人员</h3><font> <font><font>";
-echo "<font color='red'><h5>现在可以显示并杀掉正在打包的进程了,打个包刷新页面试试</h5><font> <font><font>";
+echo "<font color='red'><h5>现在可以显示并选择是否杀掉正在打包的进程了,打个包刷新页面试试</h5><font> <font><font>";
 echo "<p><img src=\"/saya.gif\"/>";
 
 if ($pid != null) {
