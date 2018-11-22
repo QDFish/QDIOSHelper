@@ -39,8 +39,6 @@ $gray = $_POST['is_gray'];
 $base_path = $mount_path . $group_path[$group] . DIRECTORY_SEPARATOR . $dir;
 $ipa_name = $target . "_${group}_$date" . $ext;
 
-echo $base_path . '_____' . $ipa_name;
-
 //switch ($group) {
 //    case "1":
 //        $base_path =  $live_path . DIRECTORY_SEPARATOR . $dir;
