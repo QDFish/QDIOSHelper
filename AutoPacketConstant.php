@@ -6,24 +6,56 @@
  * Time: 下午3:49
  */
 
-$pro_path = "/Users/guess/TaQu";
-$cd_script_c ="cd /Users/guess/AP_TaQu";
+//$pro_path = "/Users/guess/TaQu";
+//$cd_script_c ="cd /Users/guess/AP_TaQu";
 
-//$pro_path = "/Users/zgzheng/TouchiOS_new";
-//$cd_script_c ="cd /Project/AutoPacket/AP_TaQu";
-$cd_git_c = "cd " . $pro_path;
+define("HB_TaQu", "TaQu");
+define("HB_PeiPei", "PeiPei");
+define("HB_Test", "Test");
 
 $version_key = "CFBundleShortVersionString";
 $build_key = "CFBundleVersion";
 $gray_key = "HBIsGrayLevel";
 
-$test_target_key = "TaQuTest";
-$build_target_key = "TaQuBuild";
-$main_target_key = "TaQu";
+if ($target_type == HB_TaQu) {
+    $pro_path = "/Users/guess/TaQu";
+    $cd_script_c ="cd /Users/guess/AP_TaQu";
+//    $pro_path = "/Users/zgzheng/TouchiOS_new";
+//    $cd_script_c ="cd /Project/AutoPacket/AP_TaQu";
+    $cd_git_c = "cd " . $pro_path;
+    
 
-$plist_paths = [
-    $test_target_key => $pro_path . "/TaQu/TaQuTest-Info.plist",
-    $build_target_key => $pro_path . "/TaQu/TaQuBuild-Info.plist",
-    $main_target_key => $pro_path . "/TaQu/Info.plist"
-];
+    $test_target_key = "TaQuTest";
+    $build_target_key = "TaQuBuild";
+    $main_target_key = "TaQu";
+
+    $plist_paths = [
+        $test_target_key => $pro_path . "/TaQu/TaQuTest-Info.plist",
+        $build_target_key => $pro_path . "/TaQu/TaQuBuild-Info.plist",
+        $main_target_key => $pro_path . "/TaQu/Info.plist"
+    ];
+
+    $group_value = [
+        '直播' => 'live',
+        '社区' => 'forum',
+        '商城' => 'mall',
+        '融合包' => 'merge',
+        '内测' => 'beta'
+    ];
+
+    $group_path = [
+        'live' => '/iOS迭代安装包/直播',
+        'forum' => '/iOS迭代安装包/社区',
+        'mall' => '/iOS迭代安装包/商城',
+        'merge' => '/iOS迭代安装包/融合包',
+        'beta' => '/iOS迭代安装包/内测包'
+    ];
+
+} else if ($target_type == HB_PeiPei) {
+
+} else if ($target_type == HB_Test) {
+
+}
+
+
 

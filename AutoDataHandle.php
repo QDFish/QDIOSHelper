@@ -5,6 +5,9 @@
  * Date: 2018/11/8
  * Time: 上午11:55
  */
+
+$target_type = $_POST['target_type'];
+
 require_once 'AutoPacketTool.php';
 require_once 'AutoPacketConstant.php';
 
@@ -33,29 +36,34 @@ $build = $_POST['build'];
 $gray = $_POST['is_gray'];
 
 
-switch ($group) {
-    case "1":
-        $base_path =  $live_path . DIRECTORY_SEPARATOR . $dir;
-        $ipa_name = $target . "_live_${date}_" . $ext;
-        break;
-    case "2":
-        $base_path = $forum_path . DIRECTORY_SEPARATOR . $dir;
-        $ipa_name = $target . "_forum_${date}_" . $ext;
-        break;
-    case "3":
-        $base_path = $mall_path . DIRECTORY_SEPARATOR . $dir;
-        $ipa_name = $target . "_mall_${date}_" . $ext;
-        break;
-    case "4":
-        $base_path = $total_path . DIRECTORY_SEPARATOR . $dir;
-        $ipa_name = $target . "_${date}_" . $ext;
-        break;
-    case "5":
-        $base_path = $test_path . DIRECTORY_SEPARATOR . $dir;
-        $ipa_name = $target . "_${date}_" . $ext;
-        break;
-    default:
-}
+$base_path = $mount_path . $group_path[$group] . DIRECTORY_SEPARATOR . $dir;
+$ipa_name = $target . "_${group}_$date" . $ext;
+
+echo $base_path . '_____' . $ipa_name;
+
+//switch ($group) {
+//    case "1":
+//        $base_path =  $live_path . DIRECTORY_SEPARATOR . $dir;
+//        $ipa_name = $target . "_live_${date}_" . $ext;
+//        break;
+//    case "2":
+//        $base_path = $forum_path . DIRECTORY_SEPARATOR . $dir;
+//        $ipa_name = $target . "_forum_${date}_" . $ext;
+//        break;
+//    case "3":
+//        $base_path = $mall_path . DIRECTORY_SEPARATOR . $dir;
+//        $ipa_name = $target . "_mall_${date}_" . $ext;
+//        break;
+//    case "4":
+//        $base_path = $total_path . DIRECTORY_SEPARATOR . $dir;
+//        $ipa_name = $target . "_${date}_" . $ext;
+//        break;
+//    case "5":
+//        $base_path = $test_path . DIRECTORY_SEPARATOR . $dir;
+//        $ipa_name = $target . "_${date}_" . $ext;
+//        break;
+//    default:
+//}
 
 
 $git_reset_c = "git reset --hard";
@@ -136,12 +144,13 @@ if ($gray_value != null) {
 //}
 
 //echo 'test-----';
-//
-//
+
+
 //exit(1);
 
 $unlock_c = "security -v unlock-keychain -p \"123456\" ~/Library/Keychains/login.keychain-db";
 $xb_c = "./QDXbPHP.sh $select_branch $target $ipa_name $base_path";
+//$xb_c = "./QDLongTask.sh";
 $xb_shell = gd_shell_array([$cd_script_c, $unlock_c, $xb_c]);
 #echo $xb_shell . PHP_EOL;
 exec($xb_shell, $xb_result, $xb_status);
