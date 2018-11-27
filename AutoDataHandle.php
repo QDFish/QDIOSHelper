@@ -141,10 +141,10 @@ $build_plist->save($plist_paths[$build_target_key], \CFPropertyList\CFPropertyLi
 //    exit(1);
 //}
 
-echo 'test-----';
-
-
-exit(1);
+//echo 'test-----';
+//
+//
+//exit(1);
 
 $unlock_c = "security -v unlock-keychain -p \"123456\" ~/Library/Keychains/login.keychain-db";
 $xb_c = "./QDXbPHP.sh $select_branch $target $ipa_name $base_path";
