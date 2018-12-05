@@ -159,4 +159,27 @@ if ($xb_status) {
     exit(1);
 } else {
     echo end($xb_result);
+
+    $webhook = "https://oapi.dingtalk.com/robot/send?access_token=2847708772bf841db880f708330ec5875078162f0c55a5333edd55c96672568c";
+
+    $message_arr = [
+        "当前分支:" . $select_branch,
+        "目标名:" . $target,
+        "文件名:" . $ipa_name,
+        "文件路径:" . $base_path,
+        "version:" . $version,
+        "build:" . $build
+    ];
+
+    $message = implode("\n", $message_arr);
+    $data = array ('msgtype' => 'text','text' => array ('content' => $message));
+    $data_string = json_encode($data);
+    $result = request_by_curl($webhook, $data_string);
+//    echo $result;
 }
+
+
+
+
+
+
