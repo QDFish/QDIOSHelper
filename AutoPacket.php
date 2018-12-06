@@ -48,7 +48,6 @@ echo <<<HTMLHeader
 <meta name="author" content="QDFish">
 <title>iOS自动打包</title>
 </head>
-˚
 <script language="javascript">
 
 function CheckPost () {
