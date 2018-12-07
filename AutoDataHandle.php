@@ -164,6 +164,7 @@ if ($xb_status) {
 
     $bath_arr = explode(DIRECTORY_SEPARATOR, $base_path);
     unset($bath_arr[0]);
+    unset($bath_arr[1]);
     array_unshift($bath_arr, "smb://10.10.5.249");
     $base_path = implode(DIRECTORY_SEPARATOR, $bath_arr);
 
