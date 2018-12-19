@@ -85,6 +85,38 @@ if ($target_type == HB_TaQu) {
     ];
 
 } else if ($target_type == HB_Test) {
+    $pro_path = "/Users/guess/MyTest";
+    $cd_script_c ="cd /Users/guess/AP_Test";
+//    $pro_path = "/Users/zgzheng/TouchiOS_new";
+//    $cd_script_c ="cd /Project/AutoPacket/AP_TaQu";
+    $cd_git_c = "cd " . $pro_path;
+
+
+    $test_target_key = "MyTest";
+    $build_target_key = "MyTest";
+    $main_target_key = "MyTest";
+
+    $plist_paths = [
+        $test_target_key => $pro_path . "/MyTest/info.plist",
+        $build_target_key => $pro_path . "/MyTest/info.plist",
+        $main_target_key => $pro_path . "/MyTest/info.plist"
+    ];
+
+    $group_value = [
+        '直播' => 'live',
+        '社区' => 'forum',
+        '商城' => 'mall',
+        '融合包' => 'merge',
+        '内测' => 'beta'
+    ];
+
+    $group_path = [
+        'live' => '/iOS迭代安装包/直播',
+        'forum' => '/iOS迭代安装包/社区',
+        'mall' => '/iOS迭代安装包/商城',
+        'merge' => '/iOS迭代安装包/融合包',
+        'beta' => '/iOS迭代安装包/内测包'
+    ];
 
 }
 
