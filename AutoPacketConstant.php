@@ -53,6 +53,37 @@ if ($target_type == HB_TaQu) {
 
 } else if ($target_type == HB_PeiPei) {
 
+    $pro_path = "/Users/guess/PeiPei";
+    $cd_script_c ="cd /Users/guess/AP_PeiPei";
+//    $pro_path = "/Users/zgzheng/TouchiOS_new";
+//    $cd_script_c ="cd /Project/AutoPacket/AP_TaQu";
+    $cd_git_c = "cd " . $pro_path;
+
+
+    $test_target_key = "HBPeiPei-Test";
+    $build_target_key = "HBPeiPei-Build";
+    $main_target_key = "HBPeiPei";
+
+    $plist_paths = [
+        $test_target_key => $pro_path . "/HBPeiPei-CL-Info.plist",
+        $build_target_key => $pro_path . "/HBPeiPei-Build-Info.plist",
+        $main_target_key => $pro_path . "/HBPeiPei/Info.plist"
+    ];
+
+    $group_value = [
+        '测试' => 'test',
+        '灰度' => 'gray',
+        '内测' => 'beta',
+        '融合包' => 'merge',
+    ];
+
+    $group_path = [
+        'test' => '/iOS迭代安装包/配配/测试',
+        'gray' => '/iOS迭代安装包/配配/灰度',
+        'beta' => '/iOS迭代安装包/配配/内测',
+        'merge' => '/iOS迭代安装包/配配/融合包',
+    ];
+
 } else if ($target_type == HB_Test) {
 
 }

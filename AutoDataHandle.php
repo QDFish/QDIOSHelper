@@ -17,11 +17,11 @@ if (file_exists("/tmp/lock.file")) {
 }
 
 $mount_path= "/Volumes/packages";
-$live_path = $mount_path . "/iOS迭代安装包/直播";
-$forum_path = $mount_path . "/iOS迭代安装包/社区";
-$mall_path = $mount_path . "/iOS迭代安装包/商城";
-$total_path = $mount_path . "/iOS迭代安装包/融合包";
-$test_path = $mount_path . "/iOS迭代安装包/内测包";
+//$live_path = $mount_path . "/iOS迭代安装包/直播";
+//$forum_path = $mount_path . "/iOS迭代安装包/社区";
+//$mall_path = $mount_path . "/iOS迭代安装包/商城";
+//$total_path = $mount_path . "/iOS迭代安装包/融合包";
+//$test_path = $mount_path . "/iOS迭代安装包/内测包";
 
 $date = date('Ymd');
 
