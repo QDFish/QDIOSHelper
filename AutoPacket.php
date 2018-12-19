@@ -133,8 +133,8 @@ echo "</select>";
 echo "<br />";
 echo "目标名: ";
 echo "<select name=\"target\" id='target' onchange='change(this.id)'>";
-echo "<option value=\"TaQuTest\" selected='selected'>TaQuTest</option>";
-echo "<option value=\"TaQuBuild\">TaQuBuild</option>";
+echo "<option value=\"$test_target_key\" selected='selected'>$test_target_key</option>";
+echo "<option value=\"$build_target_key\">$build_target_key</option>";
 echo "</select>";
 
 echo "<br />";
