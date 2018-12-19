@@ -8,12 +8,6 @@
 
 
 $target_type = $_GET['target_type'];
-
-if ($target_type == 'TaQu') {
-    echo '施工中....';
-    return;
-}
-
 require_once 'AutoPacketTool.php';
 require_once 'AutoPacketConstant.php';
 
