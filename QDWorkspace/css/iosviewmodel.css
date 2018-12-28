@@ -1,0 +1,18 @@
+div.base_div {
+    position: relative;
+    margin-top: 10px;
+    left: 20px;
+    width: fit-content;
+    background-color: white;
+}
+
+div.content_div {
+    position: relative;
+    width: fit-content;
+    padding: 5px;
+    background-color: gray;
+}
+
+button.classname_btn, button.constraints_btn, button.subviews_btn {
+    display: block;
+}

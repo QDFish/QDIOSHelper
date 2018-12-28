@@ -154,7 +154,9 @@ $xb_shell = gd_shell_array([$cd_script_c, $unlock_c, $xb_c]);
 exec($xb_shell, $xb_result, $xb_status);
 
 if ($xb_status) {
-    print_r($xb_result);
+    $xb_result = array_splice($xb_result, 0, count($xb_result) - 10);
+    $xb_result_str = implode("\n", $xb_result);
+    print_r($xb_result_str);
     echo 'xb failed';
     exit(1);
 } else {
