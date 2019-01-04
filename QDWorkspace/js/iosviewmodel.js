@@ -103,7 +103,7 @@ function bind_classname_click() {
     $(".classname_btn").click(function () {
         cur_pop_selector = $(this);
         var propertys = $(this).data();
-        if (!propertys || Object.keys(propertys).length == 0) {
+        if (!("CusClass_classname" in propertys)) {
             propertys = {"CusClass_classname" : ""};
             $(this).data(propertys);
         }
@@ -111,7 +111,7 @@ function bind_classname_click() {
         get_extra_list(function () {
             reset_property_content(propertys);
 
-            if (Object.keys(cur_pop_selector.data()).length == 1) {
+            if (cur_pop_selector.data("CusClass_classname") == "") {
                 class_change($("select[name=\"classname\"]").val());
             } else {
                 reset_property_content(cur_pop_selector.data());

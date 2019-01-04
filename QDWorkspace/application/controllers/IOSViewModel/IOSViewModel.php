@@ -123,7 +123,7 @@ class IOSViewModel extends CI_Controller
 
     public function help() {
         $help = <<<HELP
-    Tips
+        <span stype="font-size:large;">Tips</span>
     
 0、第一个视图只需去设置相应的变量名(instanceName)即可,比如在vc中是self.view,在view中是self等等,相当于根视图         
          
@@ -138,9 +138,12 @@ class IOSViewModel extends CI_Controller
 4、当设置视图本身的属性时,放空的属性不会被分析,所有只需设置需要的属性,很多属性具有预设值。没有预设值比如UIImage,只需输入相应的图片名即可
 
 5、约束有三个属性可以设置,分别是attr, view, offset,按照的是Masonry的规则来
+
 attr表示约束本身,比如left,right用LR表示,他们都有预设值,根据预设值去设置,attr为必须设置的属性,否则不会被保存
+
 view表示相对于的约束对象,具有变化的预设值,分别为父类,自己,还有同胞。view可以省略,默认为父视图
-offset同约束值offset,如果attr的值为L,R,T,B中的其中之一,可以大胆的使用正值,做了方便处理,offset可以省略,为0
+
+offset同约束值offset,如果attr的值为L,R,T,B中的其中之一,不用根据方向判断使用正值还是赋值,直接使用正值,做了方便处理,offset可以省略,为0
 
 6、当约束为高度或者宽度时,通过省略view的值而设置offset的值去设置相应的高度以及宽度。
 HELP;
