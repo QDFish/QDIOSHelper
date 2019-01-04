@@ -1,10 +1,131 @@
+body {
+    position: absolute;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+div.pop_bg, div.loading_bg{
+    display: flex;
+    position: absolute;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: #000000;
+    opacity: 0;
+    visibility: hidden;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+div.loading_bg {
+    z-index: 2;
+}
+
+div.pop_view {
+    display: flex;
+    position: absolute;
+    flex-direction:column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 16px;
+    width: 30%;
+    height: 80%;
+    border-radius: 16px;
+    background-color: white;
+}
+
+div.pop_content {
+    display: flex;
+    flex-direction:column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-grow: 1;
+    overflow: auto;
+}
+
+div.property_div,
+div.constraint_div,
+div.help_div{
+    display: flex;
+    position: relative;
+    background-color: #229955;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin: 5px;
+    height: fit-content;
+    align-items: center;
+    padding: 5px;
+    flex-shrink: 0;
+}
+
+div.constraint_div {
+    background-color: #f0b37e;
+}
+
+div.help_div {
+    background-color: #CC0000;
+}
+
+div.property_div span,
+div.constraint_div span,
+div.help_div span{
+    margin: 5px;
+}
+
+div.help_div span{
+    color: white;
+    white-space: pre-wrap;
+}
+
+
+button.save_btn,
+button.close_btn,
+button.analysis_btn,
+button.add_constraints_btn{
+    position: relative;
+    border-radius: 6px;
+    padding: 5px 10px 5px 10px;
+    font-size: medium;
+}
+
+button.save_btn {
+    align-self: center;
+    margin-top: 30px;
+}
+
+button.close_btn {
+    align-self: flex-end;
+}
+
+button.analysis_btn {
+    margin-top: 10px;
+    margin-left: 40px;
+}
+
+img.help {
+    margin-top:10px;
+    /*border-style: solid;*/
+    /*border-width: 1px;*/
+    /*border-color: black;*/
+    /*border-radius: 15px;*/
+    width: 30px;
+    height: 30px;
+}
+
 div.base_div {
     position: relative;
     margin-top: 10px;
-    left: 20px;
+    left: 40px;
     width: fit-content;
+    border-left-style: solid;
+    border-left-width: 2px;
+    border-left-color: gray;
     background-color: white;
 }
+
 
 div.content_div {
     position: relative;
@@ -13,6 +134,27 @@ div.content_div {
     background-color: gray;
 }
 
+div.classname_div {
+    display: none;
+}
+
 button.classname_btn, button.constraints_btn, button.subviews_btn {
     display: block;
+    border-radius: 4px;
+}
+
+button:hover {
+    background-color: #98dbcc;
+}
+
+button {
+    flex-shrink: 0;
+    pointer-events: auto;
+    background-color: #8ba8af;
+    color: snow;
+}
+
+span.tip {
+    color: #a61717;
+    font-size: small;
 }
