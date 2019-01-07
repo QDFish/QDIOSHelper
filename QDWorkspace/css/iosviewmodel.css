@@ -206,7 +206,11 @@ div.png_content_div:before {
 }
 
 div.drop_tip {
-    justify-self: center;
+    margin-top: 30px;
+    position: relative;
+    margin-left: 10px;
+    margin-right: 10px;
+    color: #cab498;
 }
 
 input.png_input {
