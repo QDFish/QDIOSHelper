@@ -11,9 +11,10 @@
         <img class="loading" src="../../../resource/loading.png">
     </div>
     
-    <button class="analysis_btn">analysis</button><img class="help" src="../../../resource/help.png">
+    <button class="analysis_btn">analysis</button><img class="help" id="help_view" src="../../../resource/help.png<?php echo '?' . date("YmdHis")?>">
 
-    <button class="upload_btn">deal</button>
+    <button class="upload_btn">deal</button><img class="help" id="help_png" src="../../../resource/help.png<?php echo '?' . date("YmdHis")?>">
+
     <div class="png_div">
         <div class="drop_tip">将文件或者目录拖到此处</div class>
     </div>

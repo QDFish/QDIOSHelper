@@ -2,7 +2,6 @@
  * Created by zgzheng on 2018/12/27.
  */
 
-var class_list_key = "class_list";
 var cur_pop_selector;
 var img_list = [];
 
@@ -39,128 +38,7 @@ function ShowTheObject(obj) {
     return des;
 }
 
-function deal_imgs() {
-    upload_imgs(function (result) {
-        if (result == true) {
-
-            var result_json = {};
-            result_json["imgs"] = {};
-
-            $(".png_container_content")
-                .each(function () {
-                    var png_input = $(this).find(".png_input");
-                    if (png_input.val().length != 0) {
-                        var img = $(this).find(".png");
-                        if (img.attr("id").length != 0) {
-                            result_json["imgs"][img.attr("id")] = png_input.val();
-                        }
-                    }
-                });
-
-            if (Object.keys(result_json["imgs"]).length == 0) {
-                alert("至少修改一张图片");
-            } else {
-                $.ajax({
-                    url : "deal_imgs",
-                    type : "POST",
-                    dataType : "text",
-                    data : JSON.stringify(result_json),
-                    success : function (data) {
-                        $("body").append("<a id='tmp_download' href='"+ data +"' download='" + data + "'>download</a>");
-                        document.getElementById("tmp_download").click();
-                        $("#tmp_download").remove();
-                    },
-                    error : function () {
-                        alert("deal failed success");
-                    }
-                });
-            }
-        }
-    });
-}
-
-function upload_imgs(finish) {
-
-
-    var data = new FormData();
-
-    for (var i = 0; i < img_list.length; i++){
-        var file = img_list[i];
-        data.append(file.name, file);
-    }
-
-    show_loading();
-    $.ajax({
-        url : "upload_imgs",
-        type : "POST",
-        data : data,
-        contentType : false,
-        processData : false,
-        success : function (data) {
-            hide_loading();
-            if (finish) {
-                finish(true);
-            }
-        },
-        error : function (error) {
-            hide_loading();
-            if (finish) {
-                alert("deal img failed");
-                finish(false);
-            }
-        }
-    });
-}
-
-function traverse_file_tree(item) {
-    if (item.isFile) {
-        item.file(function(file) {
-            if (file.type.indexOf('image') !== -1 && file.type.indexOf('gif') == -1) {
-
-                if (file.name.indexOf("@2x") !== -1) {
-                    create_img_html(file);
-                }
-
-                if (file.name.indexOf("@2x") != -1 || file.name.indexOf("@3x") != -1) {
-                    img_list.push(file);
-                }
-            }
-        });
-    } else if (item.isDirectory) {
-        var dir_reader = item.createReader();
-        dir_reader.readEntries(function(entries) {
-            for (var i=0; i<entries.length; i++) {
-                traverse_file_tree(entries[i]);
-            }
-        });
-    }
-}
-
-function create_img_html(file) {
-
-    var reader = new FileReader();
-    reader.onload = function (cur_file) {
-        var name = file.name;
-        var index = file.name.indexOf("@");
-        if (index != -1) {
-            name = name.substring(0, index);
-        }
-
-        var url = this.result;
-        var html_result =
-            "<div class=\"png_container\">" +
-            "<div class=\"png_container_content\">" +
-            "<div class=\"png_content_div\">" +
-            "<img class='png' id='" + name + "' src=\"" + url +"\">" +
-            "</div>" +
-            "<input class='png_input' type='text'>" +
-            "</div>" +
-            "</div>";
-        $(".png_div").append(html_result);
-    };
-
-    reader.readAsDataURL(file);
-}
+//bind about
 
 function bind_upload() {
     $(".upload_btn").click(function () {
@@ -200,9 +78,11 @@ function bind_png_drop() {
 function bind_help_click() {
     $(".help").click(function () {
         show_loading();
+        var id = $(this).attr("id");
+        
        $.ajax({
            type:"GET",
-           url:"help",
+           url: id,
            dataType:"text",
            success:function (data) {
                hide_loading();
@@ -333,17 +213,6 @@ function class_change(class_name) {
     var data = extra_list[class_name]["class"];
     cur_pop_selector.data(data);
     reset_property_content(cur_pop_selector.data());
-
-    // show_loading();
-    // $.ajax({
-    //     type:"GET",
-    //     url:"classProperties/" + class_name,
-    //     dataType:"json",
-    //     success:function (data) {
-    //         hide_loading();
-    //
-    //     }
-    // });
 }
 
 function recursion_selector(selector) {
@@ -685,6 +554,130 @@ function get_extra_list(finish) {
     }
 }
 
+
+function deal_imgs() {
+    upload_imgs(function (result) {
+        if (result == true) {
+
+            var result_json = {};
+            result_json["imgs"] = {};
+
+            $(".png_container_content")
+                .each(function () {
+                    var png_input = $(this).find(".png_input");
+                    if (png_input.val().length != 0) {
+                        var img = $(this).find(".png");
+                        if (img.attr("id").length != 0) {
+                            result_json["imgs"][img.attr("id")] = png_input.val();
+                        }
+                    }
+                });
+
+            if (Object.keys(result_json["imgs"]).length == 0) {
+                alert("至少修改一张图片");
+            } else {
+                $.ajax({
+                    url : "deal_imgs",
+                    type : "POST",
+                    dataType : "text",
+                    data : JSON.stringify(result_json),
+                    success : function (data) {
+                        $("body").append("<a id='tmp_download' href='"+ data +"' download='" + data + "'>download</a>");
+                        document.getElementById("tmp_download").click();
+                        $("#tmp_download").remove();
+                    },
+                    error : function () {
+                        alert("deal failed success");
+                    }
+                });
+            }
+        }
+    });
+}
+
+function upload_imgs(finish) {
+
+
+    var data = new FormData();
+
+    for (var i = 0; i < img_list.length; i++){
+        var file = img_list[i];
+        data.append(file.name, file);
+    }
+
+    show_loading();
+    $.ajax({
+        url : "upload_imgs",
+        type : "POST",
+        data : data,
+        contentType : false,
+        processData : false,
+        success : function (data) {
+            hide_loading();
+            if (finish) {
+                finish(true);
+            }
+        },
+        error : function (error) {
+            hide_loading();
+            if (finish) {
+                alert("deal img failed");
+                finish(false);
+            }
+        }
+    });
+}
+
+function traverse_file_tree(item) {
+    if (item.isFile) {
+        item.file(function(file) {
+            if (file.type.indexOf('image') !== -1 && file.type.indexOf('gif') == -1) {
+
+                if (file.name.indexOf("@2x") !== -1) {
+                    create_img_html(file);
+                }
+
+                if (file.name.indexOf("@2x") != -1 || file.name.indexOf("@3x") != -1) {
+                    img_list.push(file);
+                }
+            }
+        });
+    } else if (item.isDirectory) {
+        var dir_reader = item.createReader();
+        dir_reader.readEntries(function(entries) {
+            for (var i=0; i<entries.length; i++) {
+                traverse_file_tree(entries[i]);
+            }
+        });
+    }
+}
+
+function create_img_html(file) {
+
+    var reader = new FileReader();
+    reader.onload = function (cur_file) {
+        var name = file.name;
+        var index = file.name.indexOf("@");
+        if (index != -1) {
+            name = name.substring(0, index);
+        }
+
+        var url = this.result;
+        var html_result =
+            "<div class=\"png_container\">" +
+            "<div class=\"png_container_content\">" +
+            "<div class=\"png_content_div\">" +
+            "<img class='png' id='" + name + "' src=\"" + url +"\">" +
+            "</div>" +
+            "<input class='png_input' type='text'>" +
+            "</div>" +
+            "</div>";
+        $(".png_div").append(html_result);
+    };
+
+    reader.readAsDataURL(file);
+}
+
 function show_pop() {
     $("body").css("overflow", "hidden");
     $(".pop_bg")
@@ -751,11 +744,6 @@ function stop_rotate_sel(selector) {
     selector.css({"-webkit-transform": "rotate(" + degree + "deg)"});
     clearTimeout(timer);
 }
-
-
-
-//.....request
-
 
 
 //.....html

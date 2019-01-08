@@ -1,0 +1,76 @@
+div.background {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin : 10px;
+    left:0;right: 0;top:0;bottom:0;
+    background-color: #ecf3f5;
+}
+
+#input_content, #output_content {
+    position: relative;
+    height: 100%;
+    width: 40%;
+    flex-shrink: 0;
+    background-color: #ecf3f5;
+}
+
+#output_content {
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+    overflow: auto;
+    background-color: #e7ece0;
+}
+
+#right {
+    position: relative;
+    margin: 10px;
+}
+
+#input_div {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+#input {
+    resize: none;
+    /*position: absolute;*/
+    /*display: block;*/
+    /*top: 0;*/
+    /*left: 0;right: 0;bottom: 0;*/
+    background: #e7ece0;
+    width: 98%;
+    height: 99%;
+}
+
+#input_tip {
+    color: #c7cae4;
+    margin: 10px;
+    position: relative;
+}
+
+#interface_div {
+    color: #86ab70;
+}
+
+#implement_div {
+    color: #234b94;
+}
+
+#protocol_div {
+    color: #882998;
+}
+
+#tip {
+    color: red;
+}
+
+span {
+    display: block;
+}

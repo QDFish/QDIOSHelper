@@ -15,7 +15,7 @@ class IOSViewModel extends CI_Controller
     public function index()
     {
         $this->load->helper('url');
-        $this->load->view('NormalHtmlBegin');
+        $this->load->view('NormalHtmlBegin', ["title" => "IOS VIEW HELP TOOL"]);
         $this->load->view(self::$base_path . 'IOSViewHeader');
         $this->load->view(self::$base_path . 'IOSViewHtmlBody');
         $this->load->view('NormalHtmlEnd');
@@ -84,6 +84,144 @@ class IOSViewModel extends CI_Controller
         echo json_encode($result);
     }
 
+
+
+    public function upload_imgs()
+    {
+        $tmp_path = __DIR__ . DIRECTORY_SEPARATOR . "../../../tmp/";
+        $path = __DIR__ . DIRECTORY_SEPARATOR . "../../../download/";
+        $this->delete_file_path($tmp_path, false);
+        $this->delete_file_path($path, false);
+        mkdir($path);
+
+        $files = $_FILES;
+        $result = [];
+        foreach ($files as $key => $value) {
+            $result[] = $value;
+            move_uploaded_file($value["tmp_name"], $tmp_path . $value["name"]);
+        }
+        echo json_encode($result);
+    }
+
+
+
+    public function deal_imgs()
+    {
+        $json = json_decode(file_get_contents("php://input"), true);
+        $imgs = $json["imgs"];
+
+
+        $tmp_path = __DIR__ . DIRECTORY_SEPARATOR . "../../../tmp/";
+        $path = __DIR__ . DIRECTORY_SEPARATOR . "../../../download/";
+
+        $date = date("YmdHis");
+        $folder_path = $path . $date . DIRECTORY_SEPARATOR;
+        $zip_path = $path .$date . ".zip";
+        mkdir($folder_path);
+
+        foreach ($imgs as $origin => $now) {
+            $img2x = $tmp_path . $origin . "@2x.png";
+            $img3x = $tmp_path . $origin . "@3x.png";
+            $img_new2x = $folder_path . $now . "@2x.png";
+            $img_new3x = $folder_path . $now . "@3x.png";
+
+            if (is_file($img2x)) {
+                rename($img2x, $img_new2x);
+            }
+            if (is_file($img3x)) {
+                rename($img3x, $img_new3x);
+            }
+        }
+
+        if ($this->zip_archive($zip_path, $folder_path)) {
+            $this->load->helper('url');
+            $zip_arr = explode(DIRECTORY_SEPARATOR, $zip_path);
+            $zip_name = array_pop($zip_arr);
+            echo base_url() . "download/" . $zip_name;
+        }
+    }
+
+    public function help_view() {
+        $help = <<<HELP
+        <span style="font-size:xx-large;">Tips</span>
+    
+0、第一个视图只需去设置相应的变量名(instanceName)即可,比如在vc中是self.view,在view中是self等等,相当于根视图         
+         
+1、class|name按钮用来设置视图本身的属性,如果设置不全或者未设置,后面会跟上红色标注的unset
+
+2、constraints按钮用来设置视图约束,如果设置不全或者未设置,后面会跟上红色标注的unset
+
+3、subviews按钮用来添加子视图
+
+4、analysis用来生成相应的代码
+
+4、当设置视图本身的属性时,放空的属性不会被分析,所有只需设置需要的属性,很多属性具有预设值。没有预设值比如UIImage,只需输入相应的图片名即可
+
+5、约束有三个属性可以设置,分别是attr, view, offset,按照的是Masonry的规则来
+
+attr表示约束本身,比如left,right用LR表示,他们都有预设值,根据预设值去设置,attr为必须设置的属性,否则不会被保存
+
+view表示相对于的约束对象,具有变化的预设值,分别为父类,自己,还有同胞。view可以省略,默认为父视图
+
+offset同约束值offset,如果attr的值为L,R,T,B中的其中之一,不用根据方向判断使用正值还是赋值,直接使用正值,做了方便处理,offset可以省略,为0
+
+6、当约束为高度或者宽度时,通过省略view的值而设置offset的值去设置相应的高度以及宽度。
+HELP;
+        echo $help;
+    }
+
+
+    public function help_png() {
+        $help = <<<HELP
+        <span style="font-size:xx-large;">Tips</span>
+    
+0、将需要修改名称的素材文件夹或者文件拖到指定区域,预览的脚本过滤了同名不同尺寸的图片,处理图片的脚本则过滤了gif图片。所以只需按照预览填入想要修改的图片的名称即可。(不同填写尺寸)
+
+1、预览的图片如果没填写新的名称,则不会被处理导出
+
+2、填写完毕后,点按deal按钮,后端处理图片名称,并以zip的形式自动下载修改后的图片集合
+
+3、不含有尺寸标识(@2x,@3x)的不会被处理,1.5x同样被过滤
+         
+
+HELP;
+        echo $help;
+    }
+
+    private function zip_archive($archive_name, $archive_folder) {
+
+        $zip = new ZipArchive;
+        if ($zip->open($archive_name, ZipArchive::CREATE) === TRUE) {
+            $dir = preg_replace('/[\/]{2,}/', '/', $archive_folder . "/");
+
+            $dirs = array($dir);
+            while (count($dirs)) {
+                $dir = current($dirs);
+                $dir_arr = explode(DIRECTORY_SEPARATOR, $dir);
+                while ('' === ($dir_name = array_pop($dir_arr))) {
+
+                }
+
+                $dh = opendir($dir);
+                while ($file = readdir($dh)) {
+                    if ($file != '.' && $file != '..') {
+                        if (is_file($dir . $file))
+                            $zip->addFile($dir . $file, $file);
+                        elseif (is_dir($dir . $file))
+                            $dirs[] = $dir . $file . "/";
+                    }
+                }
+                closedir($dh);
+                array_shift($dirs);
+            }
+
+            $zip->close();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     private function recursionAnalysis($data, $superview_name)
     {
         $views = [];
@@ -126,23 +264,6 @@ class IOSViewModel extends CI_Controller
         return $views;
     }
 
-    public function upload_imgs()
-    {
-        $tmp_path = __DIR__ . DIRECTORY_SEPARATOR . "../../../tmp/";
-        $path = __DIR__ . DIRECTORY_SEPARATOR . "../../../download/";
-        $this->delete_file_path($tmp_path, false);
-        $this->delete_file_path($path, false);
-        mkdir($path);
-
-        $files = $_FILES;
-        $result = [];
-        foreach ($files as $key => $value) {
-            $result[] = $value;
-            move_uploaded_file($value["tmp_name"], $tmp_path . $value["name"]);
-        }
-        echo json_encode($result);
-    }
-
     private function delete_file_path($path, $del_dir)
     {
         $delete_paths = [];
@@ -169,106 +290,6 @@ class IOSViewModel extends CI_Controller
             }
         }
 
-    }
-
-    public function deal_imgs()
-    {
-        $json = json_decode(file_get_contents("php://input"), true);
-        $imgs = $json["imgs"];
-
-
-        $tmp_path = __DIR__ . DIRECTORY_SEPARATOR . "../../../tmp/";
-        $path = __DIR__ . DIRECTORY_SEPARATOR . "../../../download/";
-
-        $date = date("YmdHis");
-        $folder_path = $path . $date . DIRECTORY_SEPARATOR;
-        $zip_path = $path .$date . ".zip";
-        mkdir($folder_path);
-
-        foreach ($imgs as $origin => $now) {
-            $img2x = $tmp_path . $origin . "@2x.png";
-            $img3x = $tmp_path . $origin . "@3x.png";
-            $img_new2x = $folder_path . $now . "@2x.png";
-            $img_new3x = $folder_path . $now . "@3x.png";
-
-            if (is_file($img2x)) {
-                rename($img2x, $img_new2x);
-            }
-            if (is_file($img3x)) {
-                rename($img3x, $img_new3x);
-            }
-        }
-
-        if ($this->zip_archive($zip_path, $folder_path)) {
-            $this->load->helper('url');
-            $zip_arr = explode(DIRECTORY_SEPARATOR, $zip_path);
-            $zip_name = array_pop($zip_arr);
-            echo base_url() . "download/" . $zip_name;
-        }
-    }
-
-    public function help()
-    {
-        $help = <<<HELP
-        <span style="font-size:xx-large;">Tips</span>
-    
-0、第一个视图只需去设置相应的变量名(instanceName)即可,比如在vc中是self.view,在view中是self等等,相当于根视图         
-         
-1、class|name按钮用来设置视图本身的属性,如果设置不全或者未设置,后面会跟上红色标注的unset
-
-2、constraints按钮用来设置视图约束,如果设置不全或者未设置,后面会跟上红色标注的unset
-
-3、subviews按钮用来添加子视图
-
-4、analysis用来生成相应的代码
-
-4、当设置视图本身的属性时,放空的属性不会被分析,所有只需设置需要的属性,很多属性具有预设值。没有预设值比如UIImage,只需输入相应的图片名即可
-
-5、约束有三个属性可以设置,分别是attr, view, offset,按照的是Masonry的规则来
-
-attr表示约束本身,比如left,right用LR表示,他们都有预设值,根据预设值去设置,attr为必须设置的属性,否则不会被保存
-
-view表示相对于的约束对象,具有变化的预设值,分别为父类,自己,还有同胞。view可以省略,默认为父视图
-
-offset同约束值offset,如果attr的值为L,R,T,B中的其中之一,不用根据方向判断使用正值还是赋值,直接使用正值,做了方便处理,offset可以省略,为0
-
-6、当约束为高度或者宽度时,通过省略view的值而设置offset的值去设置相应的高度以及宽度。
-HELP;
-        echo $help;
-    }
-
-    private function zip_archive($archive_name, $archive_folder) {
-
-        $zip = new ZipArchive;
-        if ($zip->open($archive_name, ZipArchive::CREATE) === TRUE) {
-            $dir = preg_replace('/[\/]{2,}/', '/', $archive_folder . "/");
-
-            $dirs = array($dir);
-            while (count($dirs)) {
-                $dir = current($dirs);
-                $dir_arr = explode(DIRECTORY_SEPARATOR, $dir);
-                while ('' === ($dir_name = array_pop($dir_arr))) {
-
-                }
-
-                $dh = opendir($dir);
-                while ($file = readdir($dh)) {
-                    if ($file != '.' && $file != '..') {
-                        if (is_file($dir . $file))
-                            $zip->addFile($dir . $file, $file);
-                        elseif (is_dir($dir . $file))
-                            $dirs[] = $dir . $file . "/";
-                    }
-                }
-                closedir($dh);
-                array_shift($dirs);
-            }
-
-            $zip->close();
-            return true;
-        } else {
-            return false;
-        }
     }
 
     private function for_download($file_name) {
