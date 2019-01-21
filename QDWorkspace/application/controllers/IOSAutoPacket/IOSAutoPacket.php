@@ -95,6 +95,8 @@ class IOSAutoPacket extends CI_Controller
 
 1、灰度仍然是无效的
 
+2、队列中的任务都可以x掉,包括运行中的
+
 
 
 
