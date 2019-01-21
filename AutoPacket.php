@@ -12,6 +12,7 @@ require_once 'AutoPacketTool.php';
 require_once 'AutoPacketConstant.php';
 
 echo '已废弃';
+return;
 
 ///Users/zgzheng/TouchiOS_new
 $fetch_c = "git fetch origin";
