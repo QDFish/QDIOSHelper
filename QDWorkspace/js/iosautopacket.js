@@ -204,13 +204,14 @@ function get_config(finish) {
 }
 
 function add_task() {
+    show_loading();
     $.ajax({
         url: url_base + 'add_task',
         type: 'POST',
         dataType: 'text',
         data: $("form").serialize() + '&project=' + cur_project,
         success: function (data) {
-
+            hide_loading();
         },
 
         error: function (error) {
@@ -220,11 +221,13 @@ function add_task() {
 }
 
 function del_task($task_id) {
+    show_loading();
     $.ajax({
         url: url_base + 'kill_task/' + $task_id,
         type: 'GET',
         dataType: 'text',
         success: function (data) {
+            hide_loading();
         },
 
         error: function (error) {
