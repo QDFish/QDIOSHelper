@@ -151,7 +151,7 @@ class IOSPacketCore
     public function send_msg($event, $msg) {
         $data = ['event' => $event, 'msg' => $msg];
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, "http://localhost");
+        curl_setopt($ch, CURLOPT_URL, "http://10.10.70.232");
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
         curl_setopt($ch, CURLOPT_PORT, 6166);

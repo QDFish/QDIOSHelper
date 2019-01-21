@@ -254,7 +254,6 @@ function get_all_history(finish) {
         type: 'GET',
         dataType: 'json',
         success: function (data) {
-            console.log('get_all_his');
             finish(data);
         },
         error: function (error) {
