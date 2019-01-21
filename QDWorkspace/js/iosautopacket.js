@@ -60,6 +60,7 @@ $(document).ready(function () {
     });
 
     socket.on('end_loading', function (data) {
+        console.log('receive end_loading');
        hide_loading();
     });
 
