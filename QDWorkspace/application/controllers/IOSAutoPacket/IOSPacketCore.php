@@ -468,6 +468,8 @@ class IOSPacketCore
             -configuration Release \
             -archivePath $archive_filename";
 
+        $this->send_msg('message', $archive_shell);
+
 
 
         exec($archive_shell, $archive_result, $archive_status);
