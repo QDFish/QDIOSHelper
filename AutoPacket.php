@@ -11,6 +11,8 @@ $target_type = $_GET['target_type'];
 require_once 'AutoPacketTool.php';
 require_once 'AutoPacketConstant.php';
 
+echo '已废弃';
+
 ///Users/zgzheng/TouchiOS_new
 $fetch_c = "git fetch origin";
 $branch_list_c = "git branch -r";
