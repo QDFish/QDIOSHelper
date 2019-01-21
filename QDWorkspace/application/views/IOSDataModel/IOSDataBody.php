@@ -7,7 +7,7 @@
             </div>
         </div>
 
-        <img id="right" src="../../../resource/right.png">
+        <img id="right" src="<?php echo base_url(); ?>resource/right.png">
         
         <div id="output_content">
             <div id="tip"></div>

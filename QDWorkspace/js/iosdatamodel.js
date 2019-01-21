@@ -3,6 +3,21 @@
  */
 $(document).ready(function () {
     bind_json_change();
+
+    $("#right").click(function () {
+
+       $.ajax({
+           url : "textFlock",
+           type : "GET",
+           dataType : 'text',
+           success : function (data) {
+               alert(data);
+           },
+           error : function () {
+               alert("error");
+           }
+       })
+    });
 });
 
 var cur_char = 65;
@@ -24,6 +39,9 @@ function bind_json_change() {
             deal_json(JSON.parse(current_val), cur_char);
             $("#tip").text("");
         } else {
+            $("#protocol_div").empty();
+            $("#interface_div").empty();
+            $("#implement_div").empty();
             $("#tip").text("wrong json");
         }
     });
@@ -33,9 +51,9 @@ function deal_json(json) {
     if (json_is_dic(json)) {
         $("#protocol_div").append("<span class='protocol_span'>@protocol " + current_class() + ";</span>");
         $("#interface_div").append(
-            "<span class='interface_span'>@interface " + current_class() + " : NSObject</span>" +
+            "<span class='interface_span'>@interface " + current_class() + " : NSObject</span></br>" +
                 "<div class='property_div' id='" + String.fromCharCode(cur_char) +"'></div>" +
-            "<span class='interface_span'>@end</span>"
+            "</br><span class='interface_span'>@end</span></br>"
         );
         $("#implement_div").append(
             "<span class='implementation_span'>@implementation " + current_class() +"</span>" +

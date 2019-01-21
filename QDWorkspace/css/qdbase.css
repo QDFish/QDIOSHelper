@@ -1,0 +1,73 @@
+.loading_bg {
+    display: flex;
+    position: absolute;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(0, 0, 0);
+    opacity: 0;
+    visibility: hidden;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+}
+
+
+div.pop_bg{
+    display: flex;
+    position: absolute;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+div.pop_change_bg {
+    background-color: #000000;
+    opacity: 0.5;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+div.pop_view {
+    display: flex;
+    position: absolute;
+    flex-direction:column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 16px;
+    width: 30%;
+    height: 80%;
+    border-radius: 16px;
+    background-color: white;
+}
+
+div.pop_content {
+    display: flex;
+    flex-direction:column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-grow: 1;
+    overflow: auto;
+}
+
+button.save_btn,
+button.close_btn {
+    position: relative;
+    border-radius: 6px;
+    padding: 5px 10px 5px 10px;
+    font-size: medium;
+}
+
+button.save_btn {
+    align-self: center;
+    margin-top: 30px;
+}
+
+button.close_btn {
+    align-self: flex-end;
+}

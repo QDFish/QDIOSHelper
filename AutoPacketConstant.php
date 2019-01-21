@@ -18,10 +18,10 @@ $build_key = "CFBundleVersion";
 $gray_key = "HBIsGrayLevel";
 
 if ($target_type == HB_TaQu) {
-    $pro_path = "/Users/guess/TaQu";
-    $cd_script_c ="cd /Users/guess/AP_TaQu";
-//    $pro_path = "/Users/zgzheng/TouchiOS_new";
-//    $cd_script_c ="cd /Project/AutoPacket/AP_TaQu";
+//    $pro_path = "/Users/guess/TaQu";
+//    $cd_script_c ="cd /Users/guess/AP_TaQu";
+    $pro_path = "/Users/zgzheng/TouchiOS_new";
+    $cd_script_c ="cd /Project/AutoPacket/AP_TaQu";
     $cd_git_c = "cd " . $pro_path;
     
 
@@ -85,8 +85,8 @@ if ($target_type == HB_TaQu) {
     ];
 
 } else if ($target_type == HB_Test) {
-    $pro_path = "/Users/guess/MyTest";
-    $cd_script_c ="cd /Users/guess/AP_Test";
+//    $pro_path = "/Users/guess/MyTest";
+//    $cd_script_c ="cd /Users/guess/AP_Test";
 //    $pro_path = "/Users/zgzheng/TouchiOS_new";
 //    $cd_script_c ="cd /Project/AutoPacket/AP_TaQu";
     $cd_git_c = "cd " . $pro_path;

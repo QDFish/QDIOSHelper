@@ -1,0 +1,37 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+
+ERROR - 2019-01-20 07:16:30 --> Severity: error --> Exception: Too few arguments to function IOSAutoPacket::index(), 0 passed in /Project/AutoPacket/Webserver/QDWorkspace/system/core/CodeIgniter.php on line 532 and exactly 1 expected /Project/AutoPacket/Webserver/QDWorkspace/application/controllers/IOSAutoPacket/IOSAutoPacket.php 27
+ERROR - 2019-01-20 07:21:54 --> Severity: error --> Exception: Invalid binary string! /Project/AutoPacket/Webserver/vendor/rodneyrehm/plist/classes/CFPropertyList/CFBinaryPropertyList.php 534
+ERROR - 2019-01-20 07:26:48 --> 404 Page Not Found: Faviconico/index
+ERROR - 2019-01-20 08:19:57 --> Severity: error --> Exception: Invalid binary string! /Project/AutoPacket/Webserver/vendor/rodneyrehm/plist/classes/CFPropertyList/CFBinaryPropertyList.php 534
+ERROR - 2019-01-20 08:50:44 --> Severity: Warning --> Use of undefined constant project - assumed 'project' (this will throw an Error in a future version of PHP) /Project/AutoPacket/Webserver/QDWorkspace/application/controllers/IOSAutoPacket/IOSPacketCore.php 101
+ERROR - 2019-01-20 08:53:04 --> Severity: error --> Exception: Call to a member function getValue() on null /Project/AutoPacket/Webserver/QDWorkspace/application/controllers/IOSAutoPacket/IOSPacketCore.php 603
+ERROR - 2019-01-20 09:10:13 --> Severity: error --> Exception: Invalid binary string! /Project/AutoPacket/Webserver/vendor/rodneyrehm/plist/classes/CFPropertyList/CFBinaryPropertyList.php 534
+ERROR - 2019-01-20 09:13:29 --> Severity: error --> Exception: Call to a member function getValue() on null /Project/AutoPacket/Webserver/QDWorkspace/application/controllers/IOSAutoPacket/IOSPacketCore.php 609
+ERROR - 2019-01-20 09:13:32 --> Severity: error --> Exception: Call to a member function getValue() on null /Project/AutoPacket/Webserver/QDWorkspace/application/controllers/IOSAutoPacket/IOSPacketCore.php 609
+ERROR - 2019-01-20 10:31:28 --> Severity: error --> Exception: Invalid binary string! /Project/AutoPacket/Webserver/vendor/rodneyrehm/plist/classes/CFPropertyList/CFBinaryPropertyList.php 534
+ERROR - 2019-01-20 10:33:16 --> Severity: error --> Exception: Invalid binary string! /Project/AutoPacket/Webserver/vendor/rodneyrehm/plist/classes/CFPropertyList/CFBinaryPropertyList.php 534
+ERROR - 2019-01-20 10:37:49 --> Severity: error --> Exception: Call to a member function getValue() on null /Project/AutoPacket/Webserver/QDWorkspace/application/controllers/IOSAutoPacket/IOSPacketCore.php 620
+ERROR - 2019-01-20 11:22:02 --> Severity: error --> Exception: Call to a member function getValue() on null /Project/AutoPacket/Webserver/QDWorkspace/application/controllers/IOSAutoPacket/IOSPacketCore.php 638
+ERROR - 2019-01-20 11:22:02 --> Severity: error --> Exception: Call to a member function getValue() on null /Project/AutoPacket/Webserver/QDWorkspace/application/controllers/IOSAutoPacket/IOSPacketCore.php 638
+ERROR - 2019-01-20 11:23:07 --> Severity: error --> Exception: Invalid binary string! /Project/AutoPacket/Webserver/vendor/rodneyrehm/plist/classes/CFPropertyList/CFBinaryPropertyList.php 534
+ERROR - 2019-01-20 11:23:08 --> Severity: error --> Exception: Invalid binary string! /Project/AutoPacket/Webserver/vendor/rodneyrehm/plist/classes/CFPropertyList/CFBinaryPropertyList.php 534
+ERROR - 2019-01-20 11:36:25 --> Severity: Warning --> fopen(/Project/AutoPacket/Webserver/QDWorkspacelock/packet_task_lock.txt): failed to open stream: No such file or directory /Project/AutoPacket/Webserver/QDWorkspace/application/controllers/IOSAutoPacket/IOSPacketCore.php 382
+ERROR - 2019-01-20 11:36:25 --> Severity: Warning --> flock() expects parameter 1 to be resource, bool given /Project/AutoPacket/Webserver/QDWorkspace/application/controllers/IOSAutoPacket/IOSPacketCore.php 383
+ERROR - 2019-01-20 11:36:25 --> Severity: Warning --> fopen(/Project/AutoPacket/Webserver/QDWorkspacelock/packet_task_lock.txt): failed to open stream: No such file or directory /Project/AutoPacket/Webserver/QDWorkspace/application/controllers/IOSAutoPacket/IOSPacketCore.php 382
+ERROR - 2019-01-20 11:36:25 --> Severity: error --> Exception: Call to a member function getValue() on null /Project/AutoPacket/Webserver/QDWorkspace/application/controllers/IOSAutoPacket/IOSPacketCore.php 640
+ERROR - 2019-01-20 11:36:25 --> Severity: Warning --> fclose() expects parameter 1 to be resource, bool given /Project/AutoPacket/Webserver/QDWorkspace/application/controllers/IOSAutoPacket/IOSPacketCore.php 388
+ERROR - 2019-01-20 11:36:25 --> Severity: Warning --> flock() expects parameter 1 to be resource, bool given /Project/AutoPacket/Webserver/QDWorkspace/application/controllers/IOSAutoPacket/IOSPacketCore.php 383
+ERROR - 2019-01-20 11:36:25 --> Severity: Warning --> fclose() expects parameter 1 to be resource, bool given /Project/AutoPacket/Webserver/QDWorkspace/application/controllers/IOSAutoPacket/IOSPacketCore.php 388
+ERROR - 2019-01-20 11:37:06 --> Severity: error --> Exception: Call to a member function getValue() on null /Project/AutoPacket/Webserver/QDWorkspace/application/controllers/IOSAutoPacket/IOSPacketCore.php 640
+ERROR - 2019-01-20 11:37:06 --> Severity: error --> Exception: Call to a member function getValue() on null /Project/AutoPacket/Webserver/QDWorkspace/application/controllers/IOSAutoPacket/IOSPacketCore.php 640
+ERROR - 2019-01-20 11:38:45 --> Severity: error --> Exception: Invalid binary string! /Project/AutoPacket/Webserver/vendor/rodneyrehm/plist/classes/CFPropertyList/CFBinaryPropertyList.php 534
+ERROR - 2019-01-20 11:41:36 --> Severity: error --> Exception: Invalid binary string! /Project/AutoPacket/Webserver/vendor/rodneyrehm/plist/classes/CFPropertyList/CFBinaryPropertyList.php 534
+ERROR - 2019-01-20 11:45:06 --> Severity: error --> Exception: Call to a member function getValue() on null /Project/AutoPacket/Webserver/QDWorkspace/application/controllers/IOSAutoPacket/IOSPacketCore.php 640
+ERROR - 2019-01-20 11:56:46 --> Severity: error --> Exception: Invalid binary string! /Project/AutoPacket/Webserver/vendor/rodneyrehm/plist/classes/CFPropertyList/CFBinaryPropertyList.php 534
+ERROR - 2019-01-20 11:57:03 --> Severity: error --> Exception: Call to a member function getValue() on null /Project/AutoPacket/Webserver/QDWorkspace/application/controllers/IOSAutoPacket/IOSPacketCore.php 644
+ERROR - 2019-01-20 11:57:44 --> Severity: error --> Exception: Invalid binary string! /Project/AutoPacket/Webserver/vendor/rodneyrehm/plist/classes/CFPropertyList/CFBinaryPropertyList.php 534
+ERROR - 2019-01-20 11:58:05 --> Severity: error --> Exception: Call to a member function getValue() on null /Project/AutoPacket/Webserver/QDWorkspace/application/controllers/IOSAutoPacket/IOSPacketCore.php 645
+ERROR - 2019-01-20 12:18:07 --> Severity: error --> Exception: Call to a member function getValue() on null /Project/AutoPacket/Webserver/QDWorkspace/application/controllers/IOSAutoPacket/IOSPacketCore.php 646
+ERROR - 2019-01-20 12:26:47 --> Severity: error --> Exception: Call to a member function getValue() on null /Project/AutoPacket/Webserver/QDWorkspace/application/controllers/IOSAutoPacket/IOSPacketCore.php 646
+ERROR - 2019-01-20 12:51:09 --> Severity: error --> Exception: Call to a member function getValue() on null /Project/AutoPacket/Webserver/QDWorkspace/application/controllers/IOSAutoPacket/IOSPacketCore.php 645

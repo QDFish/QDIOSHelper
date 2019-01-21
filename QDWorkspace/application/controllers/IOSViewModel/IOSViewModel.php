@@ -58,12 +58,13 @@ class IOSViewModel extends CI_Controller
         echo json_encode($instance);
     }
 
-    public function analysis()
-    {
+    public function deal_view() {
+        
         $result = [];
         $view_result = "";
         $constraint_result = "";
         $json = json_decode(file_get_contents("php://input"), true);
+
         $json = $json["data"];
         $views = $this->recursionAnalysis($json, "");
         foreach ($views as $view) {
@@ -86,13 +87,11 @@ class IOSViewModel extends CI_Controller
 
 
 
-    public function upload_imgs()
-    {
+    public function upload_imgs() {
         $tmp_path = __DIR__ . DIRECTORY_SEPARATOR . "../../../tmp/";
         $path = __DIR__ . DIRECTORY_SEPARATOR . "../../../download/";
         $this->delete_file_path($tmp_path, false);
         $this->delete_file_path($path, false);
-        mkdir($path);
 
         $files = $_FILES;
         $result = [];
@@ -100,45 +99,59 @@ class IOSViewModel extends CI_Controller
             $result[] = $value;
             move_uploaded_file($value["tmp_name"], $tmp_path . $value["name"]);
         }
-        echo json_encode($result);
     }
 
 
 
     public function deal_imgs()
     {
-        $json = json_decode(file_get_contents("php://input"), true);
-        $imgs = $json["imgs"];
 
+        $real_path = $this->config->item('real_path');
+        $fp = fopen($real_path . 'lock/png_lock.txt', "r+");
 
-        $tmp_path = __DIR__ . DIRECTORY_SEPARATOR . "../../../tmp/";
-        $path = __DIR__ . DIRECTORY_SEPARATOR . "../../../download/";
+        if (flock($fp, LOCK_EX)) {  // 进行排它型锁定
+            $this->upload_imgs();
 
-        $date = date("YmdHis");
-        $folder_path = $path . $date . DIRECTORY_SEPARATOR;
-        $zip_path = $path .$date . ".zip";
-        mkdir($folder_path);
+            $result =  json_decode($_POST['result'], true);
+            $imgs = $result['imgs'];
 
-        foreach ($imgs as $origin => $now) {
-            $img2x = $tmp_path . $origin . "@2x.png";
-            $img3x = $tmp_path . $origin . "@3x.png";
-            $img_new2x = $folder_path . $now . "@2x.png";
-            $img_new3x = $folder_path . $now . "@3x.png";
+            $tmp_path = __DIR__ . DIRECTORY_SEPARATOR . "../../../tmp/";
+            $path = __DIR__ . DIRECTORY_SEPARATOR . "../../../download/";
 
-            if (is_file($img2x)) {
-                rename($img2x, $img_new2x);
+            $date = date("YmdHis");
+            $folder_path = $path . $date . DIRECTORY_SEPARATOR;
+            $zip_path = $path .$date . ".zip";
+            mkdir($folder_path);
+
+            foreach ($imgs as $origin => $now) {
+                $img2x = $tmp_path . $origin . "@2x.png";
+                $img3x = $tmp_path . $origin . "@3x.png";
+                $img_new2x = $folder_path . $now . "@2x.png";
+                $img_new3x = $folder_path . $now . "@3x.png";
+
+                if (is_file($img2x)) {
+                    rename($img2x, $img_new2x);
+                }
+                if (is_file($img3x)) {
+                    rename($img3x, $img_new3x);
+                }
             }
-            if (is_file($img3x)) {
-                rename($img3x, $img_new3x);
+
+            if ($this->zip_archive($zip_path, $folder_path)) {
+                $this->load->helper('url');
+                $zip_arr = explode(DIRECTORY_SEPARATOR, $zip_path);
+                $zip_name = array_pop($zip_arr);
+                echo base_url() . "download/" . $zip_name;
             }
+          
+            flock($fp, LOCK_UN);    // 释放锁定
+            
+        } else {
+            echo "Couldn't get the lock!";
         }
 
-        if ($this->zip_archive($zip_path, $folder_path)) {
-            $this->load->helper('url');
-            $zip_arr = explode(DIRECTORY_SEPARATOR, $zip_path);
-            $zip_name = array_pop($zip_arr);
-            echo base_url() . "download/" . $zip_name;
-        }
+        fclose($fp);
+        
     }
 
     public function help_view() {

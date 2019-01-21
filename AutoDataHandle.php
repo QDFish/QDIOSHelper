@@ -119,7 +119,6 @@ if ($target == $test_target_key) {
     $build_value = $build_plist_arr->get($build_key);
     $verson_value->setValue($version);
     $build_value->setValue($build);
-    
 }
 
 if ($gray_value != null) {

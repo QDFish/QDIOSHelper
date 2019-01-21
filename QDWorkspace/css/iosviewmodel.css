@@ -6,45 +6,45 @@ body {
     background: #ecf3f5;
 }
 
-div.pop_bg, div.loading_bg{
-    display: flex;
-    position: absolute;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    background-color: #000000;
-    opacity: 0;
-    visibility: hidden;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-}
+/*div.pop_bg{*/
+    /*display: flex;*/
+    /*position: absolute;*/
+    /*flex-direction: row;*/
+    /*justify-content: center;*/
+    /*align-items: center;*/
+    /*background-color: #000000;*/
+    /*opacity: 0;*/
+    /*visibility: hidden;*/
+    /*width: 100%;*/
+    /*height: 100%;*/
+    /*z-index: 1;*/
+/*}*/
 
-div.loading_bg {
-    z-index: 2;
-}
+/*div.loading_bg {*/
+    /*z-index: 2;*/
+/*}*/
 
-div.pop_view {
-    display: flex;
-    position: absolute;
-    flex-direction:column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    padding: 16px;
-    width: 30%;
-    height: 80%;
-    border-radius: 16px;
-    background-color: white;
-}
+/*div.pop_view {*/
+    /*display: flex;*/
+    /*position: absolute;*/
+    /*flex-direction:column;*/
+    /*justify-content: flex-start;*/
+    /*align-items: flex-start;*/
+    /*padding: 16px;*/
+    /*width: 30%;*/
+    /*height: 80%;*/
+    /*border-radius: 16px;*/
+    /*background-color: white;*/
+/*}*/
 
-div.pop_content {
-    display: flex;
-    flex-direction:column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    flex-grow: 1;
-    overflow: auto;
-}
+/*div.pop_content {*/
+    /*display: flex;*/
+    /*flex-direction:column;*/
+    /*justify-content: flex-start;*/
+    /*align-items: flex-start;*/
+    /*flex-grow: 1;*/
+    /*overflow: auto;*/
+/*}*/
 
 div.property_div,
 div.constraint_div,
@@ -82,8 +82,8 @@ div.help_div span{
 }
 
 
-button.save_btn,
-button.close_btn,
+/*button.save_btn,*/
+/*button.close_btn,*/
 button.analysis_btn,
 button.add_constraints_btn,
 button.upload_btn{
@@ -101,14 +101,14 @@ button.upload_btn {
     margin-right: 100px;
 }
 
-button.save_btn {
-    align-self: center;
-    margin-top: 30px;
-}
+/*button.save_btn {*/
+    /*align-self: center;*/
+    /*margin-top: 30px;*/
+/*}*/
 
-button.close_btn {
-    align-self: flex-end;
-}
+/*button.close_btn {*/
+    /*align-self: flex-end;*/
+/*}*/
 
 button.analysis_btn {
     margin-top: 10px;
@@ -140,7 +140,6 @@ div.base_div {
     border-left-style: solid;
     border-left-width: 2px;
     border-left-color: gray;
-    background-color: white;
 }
 
 
@@ -251,7 +250,7 @@ button {
     color: snow;
 }
 
-#tip {
+.tip {
     color: #a61717;
     font-size: small;
 }

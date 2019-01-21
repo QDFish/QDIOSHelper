@@ -6,10 +6,17 @@ var cur_pop_selector;
 var img_list = [];
 
 $(document).ready(function () {
+    load_loading_html();
+    load_popview_html(function () {
+        deal_save_action();
+    },
+    function () {
+        cur_pop_selector = undefined;
+    });
     bind_total();
-    bind_save_click();
+    // bind_save_click();
     bind_analysis_click();
-    bind_close_click();
+    // bind_close_click();
     bind_help_click();
     bind_png_drop();
     bind_upload();
@@ -87,8 +94,8 @@ function bind_help_click() {
            success:function (data) {
                hide_loading();
                var pop_content = $(".pop_content");
-               pop_content.empty();
-               $(".save_btn").css("visibility", "hidden");
+               // pop_content.empty();
+               show_savebtn(false);
                var html_result = "<div class=\"help_div\"><span>" + data + "</span></div>";
                pop_content.html(html_result);
                show_pop();
@@ -97,24 +104,20 @@ function bind_help_click() {
     });
 }
 
-function bind_close_click() {
-    $(".close_btn").click(function () {
-        hide_pop();
-    });
-}
-
 function bind_analysis_click() {
     $(".analysis_btn").click(function (event) {
         var result = recursion_selector($("body").children(".base_div"));
-        show_loading();
+        console.log(JSON.stringify({"data" : result}));
+        // show_loading();
         $.ajax({
             type:"POST",
-            url:"analysis",
+            url:"deal_view",
             dataType:"json",
             data:JSON.stringify({"data" : result}),
             success:function (data) {
                 hide_loading();
                 reset_analysis_content(data);
+                show_savebtn(false);
                 show_pop();
             }
         });
@@ -127,6 +130,7 @@ function bind_constraints_click() {
         var data = $(this).data();
         get_extra_list(function () {
             reset_constraints_content(data);
+            show_savebtn(true);
             show_pop();
         });
     });
@@ -137,8 +141,6 @@ function bind_add_constraints_click() {
         append_constraints_content();
     });
 }
-
-
 
 function bind_subview_click() {
     $(".subviews_btn").click(function () {
@@ -166,6 +168,7 @@ function bind_classname_click() {
                 reset_property_content(cur_pop_selector.data());
             }
 
+            show_savebtn(true);
             show_pop();
         });
     });
@@ -177,26 +180,34 @@ function bind_classname_change() {
     });
 }
 
-
 function bind_remove_click() {
     $(".remove_btn").click(function () {
         $( this ).parent().parent().remove();
     });
 }
 
-function bind_save_click() {
-    $(".save_btn").click(function () {
-        hide_pop(function () {
-            if (cur_pop_selector.attr("class") == "classname_btn") {
-                cur_pop_selector.removeData();
-                save_classname_content();
-            } else if (cur_pop_selector.attr("class") == "constraints_btn") {
-                cur_pop_selector.removeData();
-                save_constraints_content();
-            }
-        });
-    });
+function deal_save_action() {
+    if (cur_pop_selector.attr("class") == "classname_btn") {
+        cur_pop_selector.removeData();
+        save_classname_content();
+    } else if (cur_pop_selector.attr("class") == "constraints_btn") {
+        cur_pop_selector.removeData();
+        save_constraints_content();
+    }
 }
+// function bind_save_click() {
+//     $(".save_btn").click(function () {
+//         hide_pop(function () {
+//             if (cur_pop_selector.attr("class") == "classname_btn") {
+//                 cur_pop_selector.removeData();
+//                 save_classname_content();
+//             } else if (cur_pop_selector.attr("class") == "constraints_btn") {
+//                 cur_pop_selector.removeData();
+//                 save_constraints_content();
+//             }
+//         });
+//     });
+// }
 
 function bind_rm_constraint_click() {
     $(".remove_constraint_btn").click(function () {
@@ -233,9 +244,8 @@ function recursion_selector(selector) {
 }
 
 function reset_analysis_content(data) {
-    var pop_content = $(".pop_content");
-    pop_content.empty();
-    $(".save_btn").css("visibility", "hidden");
+    var pop_content = empty_pop_content();
+    show_savebtn(false);
     var view_code = data["views"];
     var constraint_code = data["constraints"];
 
@@ -259,8 +269,7 @@ function reset_analysis_content(data) {
 
 function reset_property_content(data) {
     extra_list = $("body").data();
-    pop_content = $(".pop_content");
-    pop_content.empty();
+    pop_content = empty_pop_content();
     var html_result = "";
     for (key in data) {
         if (key == "subviews" || key == "constraints") {
@@ -413,11 +422,11 @@ function constraint_content(constraint_data) {
 }
 
 function reset_constraints_content(data) {
-    var pop_content_sel = $(".pop_content");
+    
     var rm_constraint_sel = $(".remove_constraint_btn");
     rm_constraint_sel.off("click");
     $(".add_constraints_btn").off("click");
-    pop_content_sel.empty();
+    var pop_content_sel = empty_pop_content();
 
     var result_html = "";
 
@@ -554,79 +563,83 @@ function get_extra_list(finish) {
     }
 }
 
-
 function deal_imgs() {
-    upload_imgs(function (result) {
-        if (result == true) {
+    var result_json = {};
+    result_json["imgs"] = {};
 
-            var result_json = {};
-            result_json["imgs"] = {};
-
-            $(".png_container_content")
-                .each(function () {
-                    var png_input = $(this).find(".png_input");
-                    if (png_input.val().length != 0) {
-                        var img = $(this).find(".png");
-                        if (img.attr("id").length != 0) {
-                            result_json["imgs"][img.attr("id")] = png_input.val();
-                        }
-                    }
-                });
-
-            if (Object.keys(result_json["imgs"]).length == 0) {
-                alert("至少修改一张图片");
-            } else {
-                $.ajax({
-                    url : "deal_imgs",
-                    type : "POST",
-                    dataType : "text",
-                    data : JSON.stringify(result_json),
-                    success : function (data) {
-                        $("body").append("<a id='tmp_download' href='"+ data +"' download='" + data + "'>download</a>");
-                        document.getElementById("tmp_download").click();
-                        $("#tmp_download").remove();
-                    },
-                    error : function () {
-                        alert("deal failed success");
-                    }
-                });
+    $(".png_container_content")
+        .each(function () {
+            var png_input = $(this).find(".png_input");
+            if (png_input.val().length != 0) {
+                var img = $(this).find(".png");
+                if (img.attr("id").length != 0) {
+                    result_json["imgs"][img.attr("id")] = png_input.val();
+                }
             }
+        });
+
+    if (Object.keys(result_json["imgs"]).length == 0) {
+        alert("至少修改一张图片");
+    } else {
+        var formdata = new FormData();
+
+        for (var i = 0; i < img_list.length; i++){
+            var file = img_list[i];
+            formdata.append(file.name, file);
         }
-    });
-}
 
-function upload_imgs(finish) {
+        formdata.append('result', JSON.stringify(result_json));
 
-
-    var data = new FormData();
-
-    for (var i = 0; i < img_list.length; i++){
-        var file = img_list[i];
-        data.append(file.name, file);
+        $.ajax({
+            url : "deal_imgs",
+            type : "POST",
+            contentType : false,
+            processData : false,
+            data : formdata,
+            success : function (data) {
+                $("body").append("<a id='tmp_download' href='"+ data +"' download='" + data + "'>download</a>");
+                document.getElementById("tmp_download").click();
+                $("#tmp_download").remove();
+            },
+            error : function () {
+                alert("deal failed success");
+            }
+        });
     }
-
-    show_loading();
-    $.ajax({
-        url : "upload_imgs",
-        type : "POST",
-        data : data,
-        contentType : false,
-        processData : false,
-        success : function (data) {
-            hide_loading();
-            if (finish) {
-                finish(true);
-            }
-        },
-        error : function (error) {
-            hide_loading();
-            if (finish) {
-                alert("deal img failed");
-                finish(false);
-            }
-        }
-    });
 }
+//
+// function upload_imgs(finish) {
+//
+//
+//     var data = new FormData();
+//
+//     for (var i = 0; i < img_list.length; i++){
+//         var file = img_list[i];
+//         data.append(file.name, file);
+//     }
+//
+//     show_loading();
+//     $.ajax({
+//         url : "upload_imgs",
+//         type : "POST",
+//         data : data,
+//         contentType : false,
+//         processData : false,
+//         success : function (data) {
+//             hide_loading();
+//             if (finish) {
+//                 finish(true);
+//             }
+//         },
+//         error : function (error) {
+//             hide_loading();
+//             if (finish) {
+//                 alert("deal img failed");
+//                 finish(false);
+//             }
+//         }
+//     });
+// }
 
 function traverse_file_tree(item) {
     if (item.isFile) {
@@ -653,7 +666,6 @@ function traverse_file_tree(item) {
 }
 
 function create_img_html(file) {
-
     var reader = new FileReader();
     reader.onload = function (cur_file) {
         var name = file.name;
@@ -678,72 +690,31 @@ function create_img_html(file) {
     reader.readAsDataURL(file);
 }
 
-function show_pop() {
-    $("body").css("overflow", "hidden");
-    $(".pop_bg")
-        .css("visibility", "visible")
-        .animate({
-        opacity: 0.5
-    }, 500, function () {
-            
-    });
-}
+// function show_pop() {
+//     $("body").css("overflow", "hidden");
+//     $(".pop_bg")
+//         .css("visibility", "visible")
+//         .animate({
+//         opacity: 0.5
+//     }, 500, function () {
+//            
+//     });
+// }
 
-function hide_pop(finish) {
-    $("body").css("overflow", "auto");
-    $(".pop_bg").animate({
-        opacity: 0
-    }, 500, function () {
-        $(this).css("visibility", "hidden");
-        if (finish) {
-            finish();
-        }
-        cur_pop_selector = undefined;
-        $(".pop_content").empty();
-        $(".save_btn").css("visibility", "visible");
-    });
-}
-
-function show_loading() {
-    $("body").css("overflow", "hidden");
-    $(".loading_bg")
-        .css("visibility", "visible")
-        .animate({
-            opacity: 0.5
-        }, 500, function () {
-
-        });
-    rotate_sel($(".loading"));
-}
-
-function hide_loading(finish) {
-    $("body").css("overflow", "auto");
-    $(".loading_bg").animate({
-        opacity: 0
-    }, 500, function () {
-        $(this).css("visibility", "hidden");
-        stop_rotate_sel($(".loading"));
-        if (finish) {
-            finish();
-        }
-    });
-}
-
-var degree = 0, timer;
-
-function rotate_sel(selector) {
-    selector.css({"-webkit-transform": "rotate(" + degree + "deg)"});
-    timer = setTimeout(function () {
-        degree++;
-        rotate_sel(selector);
-    }, 5);
-}
-
-function stop_rotate_sel(selector) {
-    degree = 0;
-    selector.css({"-webkit-transform": "rotate(" + degree + "deg)"});
-    clearTimeout(timer);
-}
+// function hide_pop(finish) {
+//     $("body").css("overflow", "auto");
+//     $(".pop_bg").animate({
+//         opacity: 0
+//     }, 500, function () {
+//         $(this).css("visibility", "hidden");
+//         if (finish) {
+//             finish();
+//         }
+//         cur_pop_selector = undefined;
+//         $(".pop_content").empty();
+//         $(".save_btn").css("visibility", "visible");
+//     });
+// }
 
 
 //.....html

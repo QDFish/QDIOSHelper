@@ -1,5 +1,6 @@
 {
   "require": {
-    "rodneyrehm/plist": "2.0.1"
+    "rodneyrehm/plist": "2.0.1",
+    "workerman/phpsocket.io": "1.1.11"
   }
 }

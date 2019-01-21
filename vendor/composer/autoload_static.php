@@ -6,6 +6,36 @@ namespace Composer\Autoload;
 
 class ComposerStaticInit7b5a8c25c22e13d87b2dbd1269e78ef1
 {
+    public static $prefixLengthsPsr4 = array (
+        'W' => 
+        array (
+            'Workerman\\' => 10,
+        ),
+        'P' => 
+        array (
+            'PHPSocketIO\\' => 12,
+        ),
+        'C' => 
+        array (
+            'Channel\\' => 8,
+        ),
+    );
+
+    public static $prefixDirsPsr4 = array (
+        'Workerman\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/workerman/workerman',
+        ),
+        'PHPSocketIO\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/workerman/phpsocket.io/src',
+        ),
+        'Channel\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/workerman/channel/src',
+        ),
+    );
+
     public static $prefixesPsr0 = array (
         'C' => 
         array (
@@ -19,6 +49,8 @@ class ComposerStaticInit7b5a8c25c22e13d87b2dbd1269e78ef1
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
+            $loader->prefixLengthsPsr4 = ComposerStaticInit7b5a8c25c22e13d87b2dbd1269e78ef1::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit7b5a8c25c22e13d87b2dbd1269e78ef1::$prefixDirsPsr4;
             $loader->prefixesPsr0 = ComposerStaticInit7b5a8c25c22e13d87b2dbd1269e78ef1::$prefixesPsr0;
 
         }, null, ClassLoader::class);
