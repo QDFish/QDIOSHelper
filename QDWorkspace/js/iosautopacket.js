@@ -11,7 +11,7 @@ var build_dic;
 var version_dic;
 
 $(document).ready(function () {
-    var socket = io('http://127.0.0.1:3133', {forcenew:true});
+    var socket = io('http://10.10.70.232:3133', {forcenew:true});
 // 当连接服务端成功时触发connect默认事件
     socket.on('connect', function(){
         console.log('connect success');
