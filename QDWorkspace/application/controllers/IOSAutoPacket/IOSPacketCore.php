@@ -729,6 +729,7 @@ class IOSPacketCore
 
             $this->pro_path = "/Users/guess/PeiPei";
             $this->save_path = "/Users/guess/AP_PeiPei";
+            $this->workspace_name = 'HBPeiPei';
 //            $this->pro_path = "/Users/zgzheng/peipei";
 //            $this->save_path = "/Project/AutoPacket/AP_PeiPei";
 
