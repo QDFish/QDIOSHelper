@@ -81,6 +81,8 @@ class IOSPacketCore
             }
         });
 
+        $this->send_msg('end_loading', 'ok', true);
+
         if ($need_packet) {
             exec('php ' . __DIR__ . '/IOSPacketSh.php', $msg, $status);
         } else {
@@ -141,6 +143,8 @@ class IOSPacketCore
             $redis->close();
         });
 
+        $this->send_msg('end_loading', 'ok', true);
+
         if ($need_packet) {
             exec('php ' . __DIR__ . '/IOSPacketSh.php', $msg, $status);
         } else {
@@ -148,8 +152,11 @@ class IOSPacketCore
         }
     }
 
-    public function send_msg($event, $msg) {
+    public function send_msg($event, $msg, $remote = false) {
         $data = ['event' => $event, 'msg' => $msg];
+        if ($remote) {
+            $data['remote'] = $_SERVER['REMOTE_ADDR'];
+        }
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, "http://localhost");
         curl_setopt($ch, CURLOPT_POST, 1);
@@ -412,7 +419,7 @@ class IOSPacketCore
 
     private function lock_context($operation, $block) {
         $real_path = realpath(__DIR__ . '/../../..');;
-        $this->send_msg('message', $real_path . '/lock/packet_task_lock.txt');
+        $this->send_msg('message', 'dantui', true);
         $fp = fopen($real_path . '/lock/packet_task_lock.txt', "a+");
         if (flock($fp, $operation)) {
             $block();
@@ -748,6 +755,7 @@ class IOSPacketCore
             ];
 
         } else if ($project == HB_Test) {
+//            $this->send_msg('message', 'hhhh');
             $this->pro_path = "/Project/MyTest";
             $this->save_path = "/Project/AutoPacket/AP_Test";
             $this->workspace_name = 'MyTest';

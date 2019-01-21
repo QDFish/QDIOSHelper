@@ -6,10 +6,6 @@
  * Time: 8:59 PM
  */
 
-
-$path = '/Volumes/packages/iOS迭代安装包/直播/';
-$path_arr = explode(DIRECTORY_SEPARATOR, $path);
-unset($path_arr[0]);
-array_unshift($path_arr, 'smb://10.d');
-$path = implode(DIRECTORY_SEPARATOR, $path_arr);
-echo $path;
+if (strpos('10.10.80.176:59319', '10.10.80.176') !== false) {
+    echo 'hh';
+}

@@ -11,7 +11,7 @@ var build_dic;
 var version_dic;
 
 $(document).ready(function () {
-    var socket = io('http://10.10.70.232:3133', {forcenew:true});
+    var socket = io('http://10.10.70.232:3133');
 // 当连接服务端成功时触发connect默认事件
     socket.on('connect', function(){
         console.log('connect success');
@@ -57,6 +57,10 @@ $(document).ready(function () {
 
     socket.on('begin_task', function (data) {
         console.log('begin');
+    });
+
+    socket.on('end_loading', function (data) {
+       hide_loading();
     });
 
     socket.on('progress', function (data) {
@@ -211,7 +215,6 @@ function add_task() {
         dataType: 'text',
         data: $("form").serialize() + '&project=' + cur_project,
         success: function (data) {
-            hide_loading();
         },
 
         error: function (error) {
@@ -227,7 +230,6 @@ function del_task($task_id) {
         type: 'GET',
         dataType: 'text',
         success: function (data) {
-            hide_loading();
         },
 
         error: function (error) {

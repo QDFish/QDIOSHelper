@@ -27,7 +27,6 @@ class IOSAutoPacket extends CI_Controller
     public function index($project)
     {
         $this->core = new IOSPacketCore($project);
-        
         $this->load->helper('url');
         $this->load->view('NormalHtmlBegin', ["title" => "IOS Auto Packet"]);
         $this->load->view(IOSPacketCore::$base_path . 'IOSAutoPacketHeader', ['project' => $project]);
