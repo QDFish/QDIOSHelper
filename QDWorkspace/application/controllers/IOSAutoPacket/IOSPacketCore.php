@@ -419,7 +419,6 @@ class IOSPacketCore
 
     private function lock_context($operation, $block) {
         $real_path = realpath(__DIR__ . '/../../..');;
-        $this->send_msg('message', 'dantui', true);
         $fp = fopen($real_path . '/lock/packet_task_lock.txt', "a+");
         if (flock($fp, $operation)) {
             $block();
