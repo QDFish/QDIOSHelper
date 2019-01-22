@@ -106,7 +106,7 @@ function bind_help_click() {
 
 function bind_analysis_click() {
     $(".analysis_btn").click(function (event) {
-        var result = recursion_selector($("body").children(".base_div"));
+        var result = recursion_selector($("#background").children(".base_div"));
         console.log(JSON.stringify({"data" : result}));
         // show_loading();
         $.ajax({
