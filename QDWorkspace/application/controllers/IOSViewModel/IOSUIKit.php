@@ -368,7 +368,7 @@ class IOSClass_UIColor extends IOSClass_NSObject {
     
     static public function html_option() {
         return [
-            "[UIColor WhiteColor]",
+            "[UIColor whiteColor]",
             "[UIColor blackColor]",
             "HB_RGBCOLOR()",
             "HB_RGBACOLOR()",
