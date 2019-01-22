@@ -107,7 +107,7 @@ class IOSViewModel extends CI_Controller
     {
 
         $real_path = realpath(__DIR__ . '/../../..');;
-        $fp = fopen($real_path . 'lock/png_lock.txt', "a+");
+        $fp = fopen($real_path . '/lock/png_lock.txt', "a+");
 
         if (flock($fp, LOCK_EX)) {  // 进行排它型锁定
             $this->upload_imgs();
