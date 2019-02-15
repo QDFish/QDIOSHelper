@@ -1,11 +1,11 @@
 RewriteEngine On
-#RewriteBase /QDWorkspace
+RewriteBase /QDWorkspace
 #RewriteCond "%{REQUEST_URI}" "(/Tools/)"
 #RewriteRule ^(Tools/IOSViewModel)(.+)$ QDWorkspace/index.php/$2 [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 #RewriteCond "%{REQUEST_URI}" "(/Tools/)"
-RewriteRule ^(.*)$ QDWorkspace/index.php/$1 [L]
+RewriteRule ^(.*)$ index.php/$1 [L]
 #RewriteCond "%{SCRIPT_FILENAME}" "(.png)$"
 #RewriteRule ^(\w+.png)$ resource/$1 [L]
 #RewriteCond

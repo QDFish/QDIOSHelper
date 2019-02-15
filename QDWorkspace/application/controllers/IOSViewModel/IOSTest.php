@@ -6,6 +6,7 @@
  * Time: 8:59 PM
  */
 
-if (strpos('10.10.80.176:59319', '10.10.80.176') !== false) {
-    echo 'hh';
-}
+$archive_result =['fff', 'sdafasdf', 'asdfasdfasdfasdf'];
+$archive_result = array_splice($archive_result, count($archive_result) - 1, 1);
+$archive_result_str = implode("\n", $archive_result);
+echo $archive_result_str;

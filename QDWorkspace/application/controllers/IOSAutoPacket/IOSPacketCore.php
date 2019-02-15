@@ -469,7 +469,10 @@ class IOSPacketCore
 
         exec($archive_shell, $archive_result, $archive_status);
         if ($archive_status) {
-            $archive_result = array_splice($archive_result, 0, count($archive_result) - 1);
+            $log_count = 2;
+            $log_count = $log_count > count($archive_result) ? count($archive_result) : $log_count;
+            
+            $archive_result = array_splice($archive_result, count($archive_result) - $log_count, $log_count);
             $archive_result_str = implode("\n", $archive_result);
 
             $task['reason'] = 'archive failed' . $archive_result_str;
@@ -493,7 +496,10 @@ class IOSPacketCore
 
         exec($ipa_shell, $ipa_result, $ipa_status);
         if ($ipa_status) {
-            $ipa_result = array_splice($ipa_result, 0, count($ipa_result) - 2);
+            $log_count = 2;
+            $log_count = $log_count > count($archive_result) ? count($archive_result) : $log_count;
+
+            $ipa_result = array_splice($ipa_result, count($ipa_result) - $log_count, $log_count);
             $ipa_result_str = implode(" ", $ipa_result);
 
             $task['reason'] = 'ipa failed' . $ipa_result_str;

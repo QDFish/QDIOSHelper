@@ -1750,3 +1750,6 @@
 2019-01-21 18:43:28 pid:74084 Workerman[SocketPacket.php] stopping ...
 2019-01-21 18:43:28 pid:74084 Workerman[SocketPacket.php] has been stopped
 2019-01-21 18:43:28 pid:74373 Workerman[SocketPacket.php] stop success
+2019-02-15 14:49:08 pid:10055 Workerman[SocketPacket.php] restart 
+2019-02-15 14:49:08 pid:10055 Workerman[SocketPacket.php] is stopping ...
+2019-02-15 14:49:08 pid:10055 Workerman[SocketPacket.php] stop success
