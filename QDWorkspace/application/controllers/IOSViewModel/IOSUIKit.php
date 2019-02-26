@@ -37,6 +37,7 @@ define('IOSProperty_image', 'UIImage_image');
 
 //UIButton
 define('IOSProperty_setBtnStyle', 'BtnType_setBtnStyle');
+define('IOSProperty_titleLabFont', 'UIFont_titleLabel.font');
 define('IOSProperty_imageState', 'UIImage_setImage_UIControlState_forState');
 define('IOSProperty_titleState', 'NSString_setTitle_UIControlState_forState');
 define('IOSProperty_titleColorState', 'UIColor_setTitleColor_UIControlState_forState');
@@ -282,6 +283,7 @@ class IOSClass_UILabel extends  IOSClass_UIView {
 class IOSClass_UIButton extends IOSClass_UIView {
     static private $ivar_propertys = [
         IOSProperty_setBtnStyle,
+        IOSProperty_titleLabFont,
         IOSProperty_titleState,
         IOSProperty_titleColorState,
         IOSProperty_imageState,
@@ -295,8 +297,13 @@ class IOSClass_UIButton extends IOSClass_UIView {
 
 class IOSClass_UITextField extends IOSClass_UIView {
     static private $ivar_propertys = [
-        IOSProperty_placeholder
+        IOSProperty_placeholder,
+        IOSProperty_font,
+        IOSProperty_textColor,
+        IOSProperty_textAlignment,
+        IOSProperty_text
     ];
+
     protected function get_property() {
         return array_merge(self::$ivar_propertys, parent::get_property());
     }

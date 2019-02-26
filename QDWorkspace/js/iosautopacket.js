@@ -13,7 +13,7 @@ var version_dic;
 $(document).ready(function () {
     var socket = io('http://10.10.70.232:3133');
 // 当连接服务端成功时触发connect默认事件
-    socket.on('connect', function(){
+    socket.on('connect', funct{
         console.log('connect success');
     });
 

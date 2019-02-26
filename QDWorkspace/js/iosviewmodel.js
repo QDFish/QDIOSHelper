@@ -295,7 +295,7 @@ function reset_property_content(data) {
                 if (html_type == "input") {
                     span_result +=
                         "<span class=\"" + class_type + "\">" +
-                        name + ": <input name=\"" + name + "\" type=\"text\" value=\"" + value + "\">" +
+                        name + ": <input class='property_input' name=\"" + name + "\" type=\"text\" value=\"" + value + "\">" +
                         "</span>";
                 } else if (html_type == "select") {
 
@@ -329,7 +329,7 @@ function reset_property_content(data) {
 
                     span_result +=
                         "<span class=\"" + class_type + "\">" +
-                        name + ": <input name=\"" + name + "\" list=\"" + class_type +"\" value=\"" + value + "\">" +
+                        name + ": <input class='property_input' name=\"" + name + "\" list=\"" + class_type +"\" value=\"" + value + "\">" +
                         list_result +
                         "</span>";
                 }
