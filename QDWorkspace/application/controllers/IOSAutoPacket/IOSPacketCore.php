@@ -761,7 +761,7 @@ class IOSPacketCore
 
         } else if ($project == HB_TQLive) {
 
-            $this->pro_path = "/Users/guess/PeiPei";
+            $this->pro_path = "/Users/guess/TQLive";
             $this->save_path = "/Users/guess/AP_TQLive";
             $this->workspace_name = 'TQLive';
 //            $this->pro_path = "/Users/zgzheng/peipei";
