@@ -15,6 +15,7 @@ use PHPSocketIO\SocketIO;
 define("HB_TaQu", "TaQu");
 define("HB_PeiPei", "PeiPei");
 define("HB_Test", "Test");
+define("HB_TQLive", "TQLive");
 
 
 class IOSPacketCore
@@ -756,6 +757,40 @@ class IOSPacketCore
                 'gray' => '/iOS迭代安装包/配配/灰度',
                 'beta' => '/iOS迭代安装包/配配/内测',
                 'merge' => '/iOS迭代安装包/配配/融合包',
+            ];
+
+        } else if ($project == HB_TQLive) {
+
+            $this->pro_path = "/Users/guess/PeiPei";
+            $this->save_path = "/Users/guess/AP_TQLive";
+            $this->workspace_name = 'TQLive';
+//            $this->pro_path = "/Users/zgzheng/peipei";
+//            $this->save_path = "/Project/AutoPacket/AP_PeiPei";
+
+            $this->test_target_key = "TQLive";
+            $this->build_target_key = "TQLive";
+            $this->main_target_key = "TQLive";
+
+            $this->plist_paths = [
+                $this->test_target_key => $this->pro_path . "/TQLive/Info.plist",
+                $this->build_target_key => $this->pro_path . "/TQLive/Info.plist",
+                $this->main_target_key => $this->pro_path . "/TQLive/Info.plist"
+            ];
+
+            $this->group_value = [
+                '直播' => 'live',
+                '社区' => 'forum',
+                '商城' => 'mall',
+                '融合包' => 'merge',
+                '内测' => 'beta'
+            ];
+
+            $this->group_path = [
+                'live' => '/iOS迭代安装包/直播',
+                'forum' => '/iOS迭代安装包/社区',
+                'mall' => '/iOS迭代安装包/商城',
+                'merge' => '/iOS迭代安装包/融合包',
+                'beta' => '/iOS迭代安装包/内测包'
             ];
 
         } else if ($project == HB_Test) {
