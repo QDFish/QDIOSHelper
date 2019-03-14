@@ -795,8 +795,8 @@ class IOSPacketCore
 
         } else if ($project == HB_Test) {
 //            $this->send_msg('message', 'hhhh');
-            $this->pro_path = "/Project/MyTest";
-            $this->save_path = "/Project/AutoPacket/AP_Test";
+            $this->pro_path = "/Users/guess/MyTest";
+            $this->save_path = "/Users/guess/AP_Test";
             $this->workspace_name = 'MyTest';
             $this->test_target_key = "MyTest";
             $this->build_target_key = "MyTest_build";
