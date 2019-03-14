@@ -804,8 +804,8 @@ class IOSPacketCore
 
             $this->plist_paths = [
                 $this->test_target_key => $this->pro_path . "/MyTest/Info.plist",
-                $this->build_target_key => $this->pro_path . "/MyTest/MyTest_build-Info.plist",
-                $this->main_target_key => $this->pro_path . "/MyTest/MyTest_build-Info.plist"
+                $this->build_target_key => $this->pro_path . "/MyTest/Info.plist",
+                $this->main_target_key => $this->pro_path . "/MyTest/Info.plist"
             ];
 
             $this->group_value = [
