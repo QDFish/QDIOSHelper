@@ -768,12 +768,12 @@ class IOSPacketCore
 //            $this->save_path = "/Project/AutoPacket/AP_PeiPei";
 
             $this->test_target_key = "TQLive";
-            $this->build_target_key = "TQLive";
+            $this->build_target_key = "TQLive_Test";
             $this->main_target_key = "TQLive";
 
             $this->plist_paths = [
-                $this->test_target_key => $this->pro_path . "/TQLive/Info.plist",
-                $this->build_target_key => $this->pro_path . "/TQLive/Info.plist",
+                $this->test_target_key => $tis->pro_path . "/TQLive/Info.plist",
+                $this->build_target_key => $this->pro_path . "/TQLive/Info_Test.plist",
                 $this->main_target_key => $this->pro_path . "/TQLive/Info.plist"
             ];
 
