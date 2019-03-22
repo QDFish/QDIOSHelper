@@ -778,6 +778,7 @@ class IOSPacketCore
             ];
 
             $this->group_value = [
+                '哆闪直播' => 'tqlive',
                 '直播' => 'live',
                 '社区' => 'forum',
                 '商城' => 'mall',
@@ -786,6 +787,7 @@ class IOSPacketCore
             ];
 
             $this->group_path = [
+                'tqlive' => '/iOS迭代安装包/哆闪直播',
                 'live' => '/iOS迭代安装包/直播',
                 'forum' => '/iOS迭代安装包/社区',
                 'mall' => '/iOS迭代安装包/商城',
