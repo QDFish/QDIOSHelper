@@ -60,6 +60,7 @@ function deal_json(json) {
             "<span class='implementation_span'>@end</span></br>"
         );
 
+        var waitLoad = [];
         for (key in json) {
             value = json[key];
             var val_name = remove_underline(key);
@@ -69,7 +70,8 @@ function deal_json(json) {
             if (json_is_dic(value)) {
                 cur_char++;
                 cur_property_div.append("<span class='property_span'>@property (nonatomic, strong)" + current_class() + ' *' + val_name + ";</span>");
-                deal_json(value);
+                waitLoad[cur_char] = value;
+                // deal_json(value);
             } 
             
             else if(json_is_array(value)) {
@@ -77,7 +79,8 @@ function deal_json(json) {
                 if(Object.keys(value).length > 0 && json_is_dic(value[0])) {
                     cur_char++;
                     protocol = current_class();
-                    deal_json(value[0]);
+                    waitLoad[cur_char] = value[0];
+                    // deal_json(value[0]);
                 }
 
                 cur_property_div.append("<span class='property_span'>@property (nonatomic, copy) NSArray" + protocol + ' *' + val_name + ";</span>");
@@ -85,8 +88,17 @@ function deal_json(json) {
             }
             
             else {
+                cur_char--;
                 cur_property_div.append("<span class='property_span'>@property (nonatomic, copy) NSString" + ' *' + val_name + ";</span>");
+                cur_char++;
             }
+        }
+
+        for (key in waitLoad) {
+            console.log(key + "...");
+            console.log(waitLoad[key] + "...");
+            cur_char = key;
+            deal_json(waitLoad[key]);
         }
     }
 }
