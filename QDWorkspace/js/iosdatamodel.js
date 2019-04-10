@@ -61,12 +61,11 @@ function deal_json(json) {
         );
 
         var waitLoad = [];
+        var cur_property_div = $("#" + String.fromCharCode(cur_char));
         for (key in json) {
             value = json[key];
             var val_name = remove_underline(key);
-            var cur_property_div = $("#" + String.fromCharCode(cur_char));
-            
-            
+
             if (json_is_dic(value)) {
                 cur_char++;
                 cur_property_div.append("<span class='property_span'>@property (nonatomic, strong)" + current_class() + ' *' + val_name + ";</span>");
@@ -88,9 +87,7 @@ function deal_json(json) {
             }
             
             else {
-                cur_char--;
                 cur_property_div.append("<span class='property_span'>@property (nonatomic, copy) NSString" + ' *' + val_name + ";</span>");
-                cur_char++;
             }
         }
 
