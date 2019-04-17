@@ -787,7 +787,7 @@ class IOSPacketCore
             ];
 
             $this->group_path = [
-                'tqlive' => '/iOS迭代安装包/哆闪直播',
+                'tqlive' => '/iOS迭代安装包/黄瓜直播',
                 'live' => '/iOS迭代安装包/直播',
                 'forum' => '/iOS迭代安装包/社区',
                 'mall' => '/iOS迭代安装包/商城',
