@@ -345,7 +345,7 @@ class IOSPacketCore
             $project = $task['project'];
             $this->init_config($project);
 
-            $this->init_plist();
+
 
 
 
@@ -401,6 +401,8 @@ class IOSPacketCore
                 $redis->close();
                 return 'failed';
             }
+
+            $this->init_plist();
 
             $this->save_plist($target, $version, $build, $gray);
 
