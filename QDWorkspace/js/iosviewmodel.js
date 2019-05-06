@@ -589,6 +589,7 @@ function deal_imgs() {
         }
 
         formdata.append('result', JSON.stringify(result_json));
+        alert(JSON.stringify(result_json));
 
         $.ajax({
             url : "deal_imgs",
