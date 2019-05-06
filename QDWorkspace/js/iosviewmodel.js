@@ -583,13 +583,13 @@ function deal_imgs() {
     } else {
         var formdata = new FormData();
 
+        alert(img_list.length);
         for (var i = 0; i < img_list.length; i++){
             var file = img_list[i];
             formdata.append(file.name, file);
         }
 
         formdata.append('result', JSON.stringify(result_json));
-        alert(JSON.stringify(result_json));
 
         $.ajax({
             url : "deal_imgs",
