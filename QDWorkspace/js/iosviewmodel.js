@@ -582,8 +582,7 @@ function deal_imgs() {
         alert("至少修改一张图片");
     } else {
         var formdata = new FormData();
-
-        alert(img_list.length);
+        
         for (var i = 0; i < img_list.length; i++){
             var file = img_list[i];
             formdata.append(file.name, file);
