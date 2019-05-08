@@ -653,7 +653,7 @@ class IOSPacketCore
         exec($cur_branch_shell, $cur_branch_result, $cur_branch_status);
         if ($cur_branch_status) {
 
-            echo "get current branch failed";
+            echo $cd_git_c . " get current branch failed";
             if ($exit) {
                 exit(1);
             }
