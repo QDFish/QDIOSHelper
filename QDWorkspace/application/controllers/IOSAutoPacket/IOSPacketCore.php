@@ -376,7 +376,7 @@ class IOSPacketCore
 //             $target . "_${group}_$date" . $ext;
 
             if (!$this->reset_hard(false)) {
-                $task['reason'] = 'get current branch faild';
+                $task['reason'] = 'reset hard  faild';
                 $this->save_task($redis, $task);
                 $redis->close();
                 return 'failed';
@@ -387,7 +387,7 @@ class IOSPacketCore
 
             if ($this->cur_branch != $select_branch) {
                 if (!$this->checkout_branch($select_branch, false)) {
-                    $task['reason'] = 'get current branch faild';
+                    $task['reason'] = 'checkout current branch faild';
                     $this->save_task($redis, $task);
                     $redis->close();
                     return 'failed';
@@ -396,7 +396,7 @@ class IOSPacketCore
 
 
             if (!$this->pull_branch($select_branch, false)) {
-                $task['reason'] = 'get current branch faild';
+                $task['reason'] = 'pull current branch faild';
                 $this->save_task($redis, $task);
                 $redis->close();
                 return 'failed';
