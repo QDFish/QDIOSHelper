@@ -53,7 +53,7 @@ class IOSPacketCore
     public function __construct($project = '') {
         if ($project != '') {
             $this->init_config($project);
-            $this->init_plist();
+//            $this->init_plist();
             $this->get_branches();
             $this->get_cur_branch();
         }
