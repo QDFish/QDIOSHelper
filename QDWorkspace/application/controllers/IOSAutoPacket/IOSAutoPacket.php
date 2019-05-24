@@ -37,7 +37,10 @@ class IOSAutoPacket extends CI_Controller
             "build_target_key" => $this->core->build_target_key,
             "version_dic" => $this->core->version_dic,
             "build_dic" => $this->core->build_dic,
-            "group_value" => $this->core->group_value
+            "group_value" => $this->core->group_value,
+            "init_config_time" => $this->core->init_time,
+            "get_branch_time" => $this->core->get_branch_time,
+            "get_cur_branch_time" => $this->core->get_cur_branch_time
         ]);
         $this->load->view('NormalHtmlEnd');
     }
@@ -96,8 +99,6 @@ class IOSAutoPacket extends CI_Controller
 <p>1、灰度仍然是无效的</p>
 
 <p>2、队列中的任务都可以x掉,包括运行中的</p>
-
-
 
 
 HELP;

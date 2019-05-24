@@ -50,12 +50,23 @@ class IOSPacketCore
     public $cur_branch;
     public $branch_list_result;
 
+    public $init_time;
+    public $get_branch_time;
+    public $get_cur_branch_time;
+
     public function __construct($project = '') {
         if ($project != '') {
+            $time0=microtime(true);
             $this->init_config($project);
 //            $this->init_plist();
+            $time1=microtime(true);
             $this->get_branches();
+            $time2=microtime(true);
             $this->get_cur_branch();
+            $time3=microtime(true);
+            $this->init_time = $time1 - $time0;
+            $this->get_branch_time = $time2 - $time1;
+            $this->get_cur_branch_time = $time3 - $time2;
         }
     }
 
@@ -699,8 +710,8 @@ class IOSPacketCore
     private function init_config($project)
     {
         if ($project == HB_TaQu) {
-            $this->pro_path = "/Users/guess/TaQu";
-//            $this->pro_path = "/Users/zgzheng/TouchiOS_new";
+//            $this->pro_path = "/Users/guess/TaQu";
+            $this->pro_path = "/Users/zgzheng/TouchiOS_new";
             $this->save_path = "/Users/guess/AP_TaQu";
             $this->workspace_name = 'TaQu';
             $this->test_target_key = "TaQuTest";

@@ -2,6 +2,11 @@
     <div id="base_bg">
         <div id="config_bg">
             <div>
+                <span>init_time<?php echo $init_config_time ?></span><br>
+                <span>get_branch_time<?php echo $get_branch_time ?></span><br>
+                <span>cur_branch_time<?php echo $get_cur_branch_time ?></span>
+            </div>
+            <div>
                 <h1 style="display: inline">IOS打包</h1>
                 <img class="help" id="help_view" src="<?php echo base_url();?>resource/help.png<?php echo '?' . date("YmdHis")?>">
             </div>
