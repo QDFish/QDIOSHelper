@@ -710,8 +710,8 @@ class IOSPacketCore
     private function init_config($project)
     {
         if ($project == HB_TaQu) {
-//            $this->pro_path = "/Users/guess/TaQu";
-            $this->pro_path = "/Users/zgzheng/TouchiOS_new";
+            $this->pro_path = "/Users/guess/TaQu";
+//            $this->pro_path = "/Users/zgzheng/TouchiOS_new";
             $this->save_path = "/Users/guess/AP_TaQu";
             $this->workspace_name = 'TaQu';
             $this->test_target_key = "TaQuTest";
