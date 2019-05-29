@@ -111,6 +111,10 @@
     color: #11bcf7;
 }
 
+.time_status {
+    color: mediumpurple;
+}
+
 #result_bg {
     width: 40%;
     background-color: #ecf3f5;

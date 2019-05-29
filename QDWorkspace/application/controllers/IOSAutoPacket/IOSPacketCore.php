@@ -347,6 +347,8 @@ class IOSPacketCore
         $redis = $this->redis();
         $task = $this->get_task($redis, 0);
         try {
+            $star_time = microtime(true);
+            $task['time_cost'] = 0;
             $task['status'] = PacketTask_Status_Loading;
             $task['pid'] = getmypid();
             $this->save_task($redis, $task);
@@ -418,8 +420,13 @@ class IOSPacketCore
             $this->save_plist($target, $version, $build, $gray);
 
             $result = $this->archive_ipa($target, $ipa_name, $base_path, $task);
+            $end_time = microtime(true);
+            $total_time = ($end_time - $star_time) / 60;
+            $task['time_cost'] = round($total_time, 1);
             $this->save_task($redis, $task);
             $redis->close();
+
+
         } catch (Exception $e) {
             $task['reason'] = 'exception ' . $e->getMessage();
             $this->save_task($redis, $task);
