@@ -340,7 +340,7 @@ function history_content_html(task) {
         "<div class='history_cell' id='" + task['task_id'] +"'>" +
             "<span class='ipa_name'>"+ task['ipa_name'] +"</span>" +
             "<span class='ipa_status'>" + task['status'] + "</span>" +
-            "<span class='time_status'>" + 'time:' + task['time_cost'] + "</span>" +
+            "<span class='time_status'>" + ' time:' + task['time_cost'] + "</span>" +
         "</div>";
 
     return html_result;
