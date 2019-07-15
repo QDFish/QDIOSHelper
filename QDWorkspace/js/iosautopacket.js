@@ -153,6 +153,8 @@ function bind_packet_click() {
     $("#submit").click(function () {
         if ($("#version").val() == '') {
             alert('需要填写版本号');
+        } else if ($('#build').val() == '') {
+            alert('需要填写build号');
         } else {
             add_task();
         }
