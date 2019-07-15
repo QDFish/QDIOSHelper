@@ -151,7 +151,11 @@ $(document).ready(function () {
 
 function bind_packet_click() {
     $("#submit").click(function () {
-        add_task();
+        if ($("#version").val() == '') {
+            alert('需要填写版本号');
+        } else {
+            add_task();
+        }
     });
 }
 

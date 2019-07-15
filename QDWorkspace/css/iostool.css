@@ -11,7 +11,8 @@ div.background {
 
 #view_helper,
 #data_helper,
-#packet_helper {
+#packet_helper,
+#compress_helper{
     position: relative;
     margin: 5px;
     margin-top: 10px;
@@ -23,14 +24,16 @@ div.background {
 
 #view_helper:hover,
 #data_helper:hover,
-#packet_helper:hover {
+#packet_helper:hover,
+#compress_helper:hover{
     background-color: #2cc36b;
 }
 
 
 #view_helper:before,
 #data_helper:before,
-#packet_helper:before {
+#packet_helper:before,
+#compress_helper:before {
     content: " ";
     display: block;
     padding-top: 60%;
