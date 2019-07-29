@@ -13,16 +13,13 @@
 
             <form id="form" action="">
                 <div class="property_div">
-                    <span class="title">当前分支:&nbsp</span><select name="select_branch" id="select_branch">
+                    <span class="title">当前分支:&nbsp</span>
+                        <?php echo "<input type=\"text\" id=\"select_branch\" name=\"select_branch\" value='$cur_branch' list='branch'>"?>
+                    <datalist id="branch">
                         <?php foreach ($branch_list_result as $value): ?>
-                            <?php if ($value == $cur_branch): ?>
-                                <?php echo "<option value='$value' selected='selected'>$value</option>" . PHP_EOL;?>
-                            <?php else: ?>
                                 <?php echo "<option value='$value'>$value</option>" . PHP_EOL; ?>
-                            <?php endif; ?>
-
                         <?php endforeach;?>
-                    </select>
+                    </datalist>
                 </div>
 
                 <div class="property_div">
