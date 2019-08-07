@@ -11,3 +11,5 @@ ERROR - 2019-07-29 07:36:33 --> Severity: error --> Exception: Connection refuse
 ERROR - 2019-07-29 07:36:33 --> Severity: error --> Exception: Connection refused /Project/AutoPacket/Webserver/QDWorkspace/application/controllers/IOSAutoPacket/IOSPacketCore.php 183
 ERROR - 2019-07-29 07:41:26 --> Severity: error --> Exception: Connection refused /Project/AutoPacket/Webserver/QDWorkspace/application/controllers/IOSAutoPacket/IOSPacketCore.php 183
 ERROR - 2019-07-29 07:41:26 --> Severity: error --> Exception: Connection refused /Project/AutoPacket/Webserver/QDWorkspace/application/controllers/IOSAutoPacket/IOSPacketCore.php 183
+ERROR - 2019-07-29 07:43:22 --> Severity: error --> Exception: Connection refused /Project/AutoPacket/Webserver/QDWorkspace/application/controllers/IOSAutoPacket/IOSPacketCore.php 183
+ERROR - 2019-07-29 07:43:22 --> Severity: error --> Exception: Connection refused /Project/AutoPacket/Webserver/QDWorkspace/application/controllers/IOSAutoPacket/IOSPacketCore.php 183

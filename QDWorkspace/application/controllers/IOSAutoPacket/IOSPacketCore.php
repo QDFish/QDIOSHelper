@@ -488,15 +488,15 @@ class IOSPacketCore
             -configuration Release \
             -archivePath $archive_filename";
 
-        exec($archive_shell, $archive_result, $archive_status);
+        exec($archive_shell, null, $archive_status);
         if ($archive_status) {
-            $log_count = 2;
-            $log_count = $log_count > count($archive_result) ? count($archive_result) : $log_count;
-            
-            $archive_result = array_splice($archive_result, count($archive_result) - $log_count, $log_count);
-            $archive_result_str = implode("\n", $archive_result);
+//            $log_count = 2;
+//            $log_count = $log_count > count($archive_result) ? count($archive_result) : $log_count;
+//
+//            $archive_result = array_splice($archive_result, count($archive_result) - $log_count, $log_count);
+//            $archive_result_str = implode("\n", $archive_result);
 
-            $task['reason'] = 'archive failed' . $archive_result_str;
+            $task['reason'] = 'archive failed';
             return 'failed';
         }
 
@@ -518,8 +518,8 @@ class IOSPacketCore
         exec($ipa_shell, $ipa_result, $ipa_status);
         if ($ipa_status) {
             $log_count = 2;
-            $log_count = $log_count > count($archive_result) ? count($archive_result) : $log_count;
-
+            $log_count = $log_count > count($ipa_result) ? count($ipa_result) : $log_count;
+//
             $ipa_result = array_splice($ipa_result, count($ipa_result) - $log_count, $log_count);
             $ipa_result_str = implode(" ", $ipa_result);
 
