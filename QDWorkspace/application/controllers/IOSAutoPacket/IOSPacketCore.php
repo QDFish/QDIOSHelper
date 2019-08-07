@@ -503,7 +503,7 @@ class IOSPacketCore
 //        $this->send_msg('message', 'archive' . $archive_shell);
 
 
-
+        $archive_status = null;
         $ipa_shell =
             "xcodebuild \
             -exportArchive \
@@ -513,7 +513,7 @@ class IOSPacketCore
             -allowProvisioningUpdates";
 
 
-//        $this->send_msg('message', 'ipa' . $ipa_shell);
+        $this->send_msg('message', 'ipa' . $ipa_shell);
 
         exec($ipa_shell, $ipa_result, $ipa_status);
         if ($ipa_status) {
@@ -817,8 +817,10 @@ class IOSPacketCore
 
         } else if ($project == HB_Test) {
 //            $this->send_msg('message', 'hhhh');
-            $this->pro_path = "/Project/MyTest";
-            $this->save_path = "/Project/AutoPacket/AP_Test";
+            $this->pro_path = "/Users/guess/TQLive";
+            $this->save_path = "/Users/guess/AP_TQLive";
+//            $this->pro_path = "/Project/MyTest";
+//            $this->save_path = "/Project/AutoPacket/AP_Test";
             $this->workspace_name = 'MyTest';
             $this->test_target_key = "MyTest";
             $this->build_target_key = "MyTest_build";
