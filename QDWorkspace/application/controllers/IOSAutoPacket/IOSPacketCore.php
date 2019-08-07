@@ -487,6 +487,7 @@ class IOSPacketCore
             -exportPath $ipa_filename \
             -exportOptionsPlist $this->save_path/exprotOptionsPlist.plist \
             -allowProvisioningUpdates";
+        $this->send_msg('message', 'ipa' . $ipa_shell);
 
         $archive_shell =
             "xcodebuild archive \
