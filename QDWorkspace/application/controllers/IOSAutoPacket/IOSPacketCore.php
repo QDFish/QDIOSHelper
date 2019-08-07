@@ -343,6 +343,8 @@ class IOSPacketCore
 //
 //        sleep(10);
 //        return 'success';
+        ini_set('memory_limit', '-1');
+        set_time_limit(0);
         $this->send_msg('begin_task', 'begin');
         $redis = $this->redis();
         $task = $this->get_task($redis, 0);
@@ -510,8 +512,6 @@ class IOSPacketCore
 
 //        $this->send_msg('message', 'archive' . $archive_shell);
 
-
-        $archive_status = null;
         $ipa_shell =
             "xcodebuild \
             -exportArchive \
