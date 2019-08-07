@@ -426,7 +426,6 @@ class IOSPacketCore
             $this->save_task($redis, $task);
             $redis->close();
 
-
         } catch (Exception $e) {
             $task['reason'] = 'exception ' . $e->getMessage();
             $this->save_task($redis, $task);
@@ -480,6 +479,14 @@ class IOSPacketCore
         if (file_exists($ipa_filename = ($ipa_path . DIRECTORY_SEPARATOR . $ipa_name))) {
             $this->delete_file_path($ipa_filename, false);
         }
+
+        $ipa_shell =
+            "xcodebuild \
+            -exportArchive \
+            -archivePath $archive_filename.xcarchive \
+            -exportPath $ipa_filename \
+            -exportOptionsPlist $this->save_path/exprotOptionsPlist.plist \
+            -allowProvisioningUpdates";
 
         $archive_shell =
             "xcodebuild archive \
