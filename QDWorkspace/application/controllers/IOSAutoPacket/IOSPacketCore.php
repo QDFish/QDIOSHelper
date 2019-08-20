@@ -45,6 +45,7 @@ class IOSPacketCore
     public $build_plist_arr;
     public $gray_value;
     public $is_gray;
+    public $cur_build;
 
     //cur
     public $cur_branch;
@@ -58,7 +59,7 @@ class IOSPacketCore
         if ($project != '') {
             $time0=microtime(true);
             $this->init_config($project);
-//            $this->init_plist();
+            $this->init_plist();
             $time1=microtime(true);
             $this->get_branches();
             $time2=microtime(true);
@@ -343,8 +344,8 @@ class IOSPacketCore
 //
 //        sleep(10);
 //        return 'success';
-        ini_set('memory_limit', '-1');
-        set_time_limit(0);
+//        ini_set('memory_limit', '-1');
+//        set_time_limit(0);
         $this->send_msg('begin_task', 'begin');
         $redis = $this->redis();
         $task = $this->get_task($redis, 0);
@@ -713,8 +714,10 @@ class IOSPacketCore
         $this->version_dic[$this->test_target_key] = $this->test_plist_arr->get(self::$version_key)->getValue();
         $this->version_dic[$this->build_target_key] = $this->build_plist_arr->get(self::$version_key)->getValue();
 
-        $this->build_dic[$this->test_target_key] = $this->test_plist_arr->get(self::$build_key)->getValue();
-        $this->build_dic[$this->build_target_key] = $this->build_plist_arr->get(self::$build_key)->getValue();
+//        $this->build_dic[$this->test_target_key] = $this->test_plist_arr->get(self::$build_key)->getValue();
+//        $this->build_dic[$this->build_target_key] = $this->build_plist_arr->get(self::$build_key)->getValue();
+        $this->build_dic[$this->test_target_key] = $this->cur_build;
+        $this->build_dic[$this->build_target_key] = $this->cur_build;
 
         $this->gray_value = $this->build_plist_arr->get(self::$gray_key);
         if ($this->gray_value) {
@@ -732,6 +735,7 @@ class IOSPacketCore
             $this->test_target_key = "TaQuTest";
             $this->build_target_key = "TaQuBuild";
             $this->main_target_key = "TaQu";
+            $this->cur_build = date('Y.md.91');
 
             $this->plist_paths = [
                 $this->test_target_key => $this->pro_path . "/TaQu/TaQuTest-Info.plist",
@@ -798,6 +802,7 @@ class IOSPacketCore
             $this->test_target_key = "TQLive";
             $this->build_target_key = "TQLive_Test";
             $this->main_target_key = "TQLive";
+            $this->cur_build = date('969.Y.m.d.1');
 
             $this->plist_paths = [
                 $this->test_target_key => $this->pro_path . "/TQLive/Info.plist",
