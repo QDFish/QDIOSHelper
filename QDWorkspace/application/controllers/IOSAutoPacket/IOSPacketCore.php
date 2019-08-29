@@ -507,7 +507,7 @@ class IOSPacketCore
 //            $archive_result = array_splice($archive_result, count($archive_result) - $log_count, $log_count);
 //            $archive_result_str = implode("\n", $archive_result);
 
-            $task['reason'] = 'archive failed';
+            $task['reason'] = 'archive failed(代码提问,让相关研发人员用release环境运行排错)';
             return 'failed';
         }
 
