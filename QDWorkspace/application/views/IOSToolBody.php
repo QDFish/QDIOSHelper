@@ -18,7 +18,7 @@
         </div>
         <div id="packet_choose">
             <div class="packet_cell" id="TaQu">他趣</div>
-            <div class="packet_cell" id="PeiPei">配配</div>
+            <div class="packet_cell" id="TaQuPod">他趣组件化</div>
         </div>
     </div>
 

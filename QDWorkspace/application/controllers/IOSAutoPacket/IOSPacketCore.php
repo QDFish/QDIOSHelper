@@ -16,6 +16,7 @@ define("HB_TaQu", "TaQu");
 define("HB_PeiPei", "PeiPei");
 define("HB_Test", "Test");
 define("HB_TQLive", "TQLive");
+define("HB_TaQuPod", "TaQuPod");
 
 
 class IOSPacketCore
@@ -843,6 +844,39 @@ class IOSPacketCore
                 $this->test_target_key => $this->pro_path . "/MyTest/Info.plist",
                 $this->build_target_key => $this->pro_path . "/MyTest/Info.plist",
                 $this->main_target_key => $this->pro_path . "/MyTest/Info.plist"
+            ];
+
+            $this->group_value = [
+                '直播' => 'live',
+                '社区' => 'forum',
+                '商城' => 'mall',
+                '融合包' => 'merge',
+                '内测' => 'beta'
+            ];
+
+            $this->group_path = [
+                'live' => '/iOS迭代安装包/直播',
+                'forum' => '/iOS迭代安装包/社区',
+                'mall' => '/iOS迭代安装包/商城',
+                'merge' => '/iOS迭代安装包/融合包',
+                'beta' => '/iOS迭代安装包/内测包'
+            ];
+        } else if ($project == HB_TaQuPod) {
+//            $this->send_msg('message', 'hhhh');
+//          $this->pro_path = "/Users/guess/TaQu";
+//            $this->pro_path = "/Users/zgzheng/TouchiOS_new";
+            $this->pro_path = "/Users/guess/TaQu/TaQuPod";
+            $this->save_path = "/Users/guess/AP_TaQu";
+            $this->workspace_name = 'TaQu';
+            $this->test_target_key = "TaQuTest";
+            $this->build_target_key = "TaQuBuild";
+            $this->main_target_key = "TaQu";
+            $this->cur_build = date('Y.md.91');
+
+            $this->plist_paths = [
+                $this->test_target_key => $this->pro_path . "/TaQu/TaQuPod/TaQuTest-Info.plist",
+                $this->build_target_key => $this->pro_path . "/TaQu/TaQuPod/TaQuBuild-Info.plist",
+                $this->main_target_key => $this->pro_path . "/TaQu/TaQuPod/Info.plist"
             ];
 
             $this->group_value = [
