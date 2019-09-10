@@ -884,7 +884,8 @@ class IOSPacketCore
                 '社区' => 'forum',
                 '商城' => 'mall',
                 '融合包' => 'merge',
-                '内测' => 'beta'
+                '内测' => 'beta',
+                '临时组件化' => 'pod'
             ];
 
             $this->group_path = [
@@ -892,7 +893,8 @@ class IOSPacketCore
                 'forum' => '/iOS迭代安装包/社区',
                 'mall' => '/iOS迭代安装包/商城',
                 'merge' => '/iOS迭代安装包/融合包',
-                'beta' => '/iOS迭代安装包/内测包'
+                'beta' => '/iOS迭代安装包/内测包',
+                'pod' => '/iOS迭代安装包/临时测试包/组件化/组件化第五期-各模块解耦'
             ];
         }
     }
