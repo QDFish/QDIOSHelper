@@ -874,9 +874,9 @@ class IOSPacketCore
             $this->cur_build = date('Y.md.91');
 
             $this->plist_paths = [
-                $this->test_target_key => $this->pro_path . "/TaQu/TaQuPod/TaQuTest-Info.plist",
-                $this->build_target_key => $this->pro_path . "/TaQu/TaQuPod/TaQuBuild-Info.plist",
-                $this->main_target_key => $this->pro_path . "/TaQu/TaQuPod/Info.plist"
+                $this->test_target_key => $this->pro_path . "/TaQuPod/TaQuTest-Info.plist",
+                $this->build_target_key => $this->pro_path . "/TaQuPod/TaQuBuild-Info.plist",
+                $this->main_target_key => $this->pro_path . "/TaQuPod/Info.plist"
             ];
 
             $this->group_value = [
