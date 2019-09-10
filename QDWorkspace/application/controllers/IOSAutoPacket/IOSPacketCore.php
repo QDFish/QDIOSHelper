@@ -484,14 +484,14 @@ class IOSPacketCore
             $this->delete_file_path($ipa_filename, false);
         }
 
-        $ipa_shell =
-            "xcodebuild \
-            -exportArchive \
-            -archivePath $archive_filename.xcarchive \
-            -exportPath $ipa_filename \
-            -exportOptionsPlist $this->save_path/exprotOptionsPlist.plist \
-            -allowProvisioningUpdates";
-        $this->send_msg('message', 'ipa' . $ipa_shell);
+//        $ipa_shell =
+//            "xcodebuild \
+//            -exportArchive \
+//            -archivePath $archive_filename.xcarchive \
+//            -exportPath $ipa_filename \
+//            -exportOptionsPlist $this->save_path/exprotOptionsPlist.plist \
+//            -allowProvisioningUpdates";
+//
 
         $archive_shell =
             "xcodebuild archive \
@@ -500,6 +500,7 @@ class IOSPacketCore
             -configuration Release \
             -archivePath $archive_filename";
 
+        $this->send_msg('message', 'ipa' . $archive_shell);
         system($archive_shell, $archive_status);
         if ($archive_status) {
 //            $log_count = 2;
