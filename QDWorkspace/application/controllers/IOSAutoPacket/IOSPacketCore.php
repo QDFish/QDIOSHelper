@@ -869,7 +869,7 @@ class IOSPacketCore
 //            $this->pro_path = "/Users/zgzheng/TouchiOS_new";
             $this->pro_path = "/Users/guess/TaQuPod/TaQuPod";
             $this->save_path = "/Users/guess/AP_TaQu";
-            $this->workspace_name = 'TaQu';
+            $this->workspace_name = 'TaQuPod';
             $this->test_target_key = "TaQuTest";
             $this->build_target_key = "TaQuBuild";
             $this->main_target_key = "TaQu";
