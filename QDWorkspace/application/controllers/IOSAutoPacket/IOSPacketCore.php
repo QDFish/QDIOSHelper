@@ -573,7 +573,7 @@ class IOSPacketCore
 
         exec("mv $ipa_filename/$target.ipa $base_path/$ipa_name.ipa", $mv_result, $mv_status);
         if ($mv_status) {
-            $task['reason'] = "mv $ipa_filename/$target.ipa to $base_path failed";
+            $task['reason'] = "mv $ipa_filename/$target.ipa to $base_path/$ipa_name.ipa failed";
             return 'failed';
         }
 
