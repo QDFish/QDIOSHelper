@@ -906,9 +906,9 @@ class IOSPacketCore
             $this->pro_path = "/Users/guess/TaQuPod/ForumModule/Example";
             $this->save_path = "/Users/guess/AP_TaQu";
             $this->workspace_name = 'ForumModule';
-            $this->test_target_key = "ForumModule_Example";
-            $this->build_target_key = "ForumModule_Example";
-            $this->main_target_key = "ForumModule_Example";
+            $this->test_target_key = "ForumModule-Example";
+            $this->build_target_key = "ForumModule-Example";
+            $this->main_target_key = "ForumModule-Example";
             $this->cur_build = date('Y.md.91');
 
             $this->plist_paths = [
