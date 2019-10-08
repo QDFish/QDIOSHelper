@@ -17,6 +17,7 @@ define("HB_PeiPei", "PeiPei");
 define("HB_Test", "Test");
 define("HB_TQLive", "TQLive");
 define("HB_TaQuPod", "TaQuPod");
+define("HB_ForumModule", "ForumModule");
 
 
 class IOSPacketCore
@@ -879,6 +880,41 @@ class IOSPacketCore
                 $this->test_target_key => $this->pro_path . "/TaQuPod/TaQuTest-Info.plist",
                 $this->build_target_key => $this->pro_path . "/TaQuPod/TaQuBuild-Info.plist",
                 $this->main_target_key => $this->pro_path . "/TaQuPod/Info.plist"
+            ];
+
+            $this->group_value = [
+                '直播' => 'live',
+                '社区' => 'forum',
+                '商城' => 'mall',
+                '融合包' => 'merge',
+                '内测' => 'beta',
+                '临时组件化' => 'pod'
+            ];
+
+            $this->group_path = [
+                'live' => '/iOS迭代安装包/直播',
+                'forum' => '/iOS迭代安装包/社区',
+                'mall' => '/iOS迭代安装包/商城',
+                'merge' => '/iOS迭代安装包/融合包',
+                'beta' => '/iOS迭代安装包/内测包',
+                'pod' => '/iOS迭代安装包/临时测试包/组件化/组件化第五期-各模块解耦'
+            ];
+        } else if ($project == HB_ForumModule) {
+//            $this->send_msg('message', 'hhhh');
+//          $this->pro_path = "/Users/guess/TaQu";
+//            $this->pro_path = "/Users/zgzheng/TouchiOS_new";
+            $this->pro_path = "/Users/guess/TaQuPod/ForumModule/Example";
+            $this->save_path = "/Users/guess/AP_TaQu";
+            $this->workspace_name = 'ForumModule';
+            $this->test_target_key = "ForumModule_Example";
+            $this->build_target_key = "ForumModule_Example";
+            $this->main_target_key = "ForumModule_Example";
+            $this->cur_build = date('Y.md.91');
+
+            $this->plist_paths = [
+                $this->test_target_key => $this->pro_path . "/ForumModule/ForumModule-Info.plist",
+                $this->build_target_key => $this->pro_path . "/ForumModule/ForumModule-Info.plist",
+                $this->main_target_key => $this->pro_path . "/ForumModule/ForumModule-Info.plist"
             ];
 
             $this->group_value = [
