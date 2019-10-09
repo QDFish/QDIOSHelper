@@ -18,6 +18,8 @@ define("HB_Test", "Test");
 define("HB_TQLive", "TQLive");
 define("HB_TaQuPod", "TaQuPod");
 define("HB_ForumModule", "ForumModule");
+define("HB_LiveModule", "LiveModule");
+define("HB_MallModule", "MallModule");
 
 
 class IOSPacketCore
@@ -915,6 +917,76 @@ class IOSPacketCore
                 $this->test_target_key => $this->pro_path . "/ForumModule/ForumModule-Info.plist",
                 $this->build_target_key => $this->pro_path . "/ForumModule/ForumModule-Info.plist",
                 $this->main_target_key => $this->pro_path . "/ForumModule/ForumModule-Info.plist"
+            ];
+
+            $this->group_value = [
+                '直播' => 'live',
+                '社区' => 'forum',
+                '商城' => 'mall',
+                '融合包' => 'merge',
+                '内测' => 'beta',
+                '临时组件化' => 'pod'
+            ];
+
+            $this->group_path = [
+                'live' => '/iOS迭代安装包/直播',
+                'forum' => '/iOS迭代安装包/社区',
+                'mall' => '/iOS迭代安装包/商城',
+                'merge' => '/iOS迭代安装包/融合包',
+                'beta' => '/iOS迭代安装包/内测包',
+                'pod' => '/iOS迭代安装包/临时测试包/组件化/组件化第五期-各模块解耦'
+            ];
+        } else if ($project == HB_LiveModule) {
+//            $this->send_msg('message', 'hhhh');
+//          $this->pro_path = "/Users/guess/TaQu";
+//            $this->pro_path = "/Users/zgzheng/TouchiOS_new";
+            $this->pro_path = "/Users/guess/TaQuPod/LiveModule/Example";
+            $this->save_path = "/Users/guess/AP_TaQu";
+            $this->workspace_name = 'LiveModule';
+            $this->test_target_key = "LiveModule-Example";
+            $this->build_target_key = "LiveModule-Example";
+            $this->main_target_key = "LiveModule-Example";
+            $this->cur_build = date('Y.md.91');
+
+            $this->plist_paths = [
+                $this->test_target_key => $this->pro_path . "/LiveModule/LiveModule-Info.plist",
+                $this->build_target_key => $this->pro_path . "/LiveModule/LiveModule-Info.plist",
+                $this->main_target_key => $this->pro_path . "/LiveModule/LiveModule-Info.plist"
+            ];
+
+            $this->group_value = [
+                '直播' => 'live',
+                '社区' => 'forum',
+                '商城' => 'mall',
+                '融合包' => 'merge',
+                '内测' => 'beta',
+                '临时组件化' => 'pod'
+            ];
+
+            $this->group_path = [
+                'live' => '/iOS迭代安装包/直播',
+                'forum' => '/iOS迭代安装包/社区',
+                'mall' => '/iOS迭代安装包/商城',
+                'merge' => '/iOS迭代安装包/融合包',
+                'beta' => '/iOS迭代安装包/内测包',
+                'pod' => '/iOS迭代安装包/临时测试包/组件化/组件化第五期-各模块解耦'
+            ];
+        } else if ($project == HB_MallModule) {
+//            $this->send_msg('message', 'hhhh');
+//          $this->pro_path = "/Users/guess/TaQu";
+//            $this->pro_path = "/Users/zgzheng/TouchiOS_new";
+            $this->pro_path = "/Users/guess/TaQuPod/MallModule/Example";
+            $this->save_path = "/Users/guess/AP_TaQu";
+            $this->workspace_name = 'MallModule';
+            $this->test_target_key = "MallModule-Example";
+            $this->build_target_key = "MallModule-Example";
+            $this->main_target_key = "MallModule-Example";
+            $this->cur_build = date('Y.md.91');
+
+            $this->plist_paths = [
+                $this->test_target_key => $this->pro_path . "/MallModule/MallModule-Info.plist",
+                $this->build_target_key => $this->pro_path . "/MallModule/MallModule-Info.plist",
+                $this->main_target_key => $this->pro_path . "/MallModule/MallModule-Info.plist"
             ];
 
             $this->group_value = [
