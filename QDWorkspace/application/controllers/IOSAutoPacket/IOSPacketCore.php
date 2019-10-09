@@ -141,6 +141,7 @@ class IOSPacketCore
             $json['build'] = $_POST['build'];
             $json['is_gray'] = $_POST['is_gray'];
             $json['select_branch'] = $_POST['select_branch'];
+            $json['configure'] = $_POST['configure'];
         });
 
         $need_packet = false;
@@ -388,6 +389,7 @@ class IOSPacketCore
             $version = $task['version'];
             $build = $task['build'];
             $gray = $task['is_gray'];
+            $configure = $task['configure'];
 
             $base_path = $task['base_path'];
 
@@ -426,7 +428,7 @@ class IOSPacketCore
 
             $this->save_plist($target, $version, $build, $gray);
 
-            $result = $this->archive_ipa($target, $ipa_name, $base_path, $task);
+            $result = $this->archive_ipa($target, $ipa_name, $base_path, $task, $configure);
             $end_time = microtime(true);
             $total_time = ($end_time - $star_time) / 60;
             $task['time_cost'] = round($total_time, 1);
@@ -455,7 +457,7 @@ class IOSPacketCore
         fclose($fp);
     }
 
-    private function archive_ipa($target, $ipa_name, $base_path, &$task) {
+    private function archive_ipa($target, $ipa_name, $base_path, &$task, $configure) {
         if (strlen($target) == 0) {
             $task['reason'] = 'target name can\'t be empty';
             return 'failed';
@@ -500,7 +502,7 @@ class IOSPacketCore
             "xcodebuild archive \
             -workspace $this->pro_path/$this->workspace_name.xcworkspace \
             -scheme $target \
-            -configuration Release \
+            -configuration $configure \
             -archivePath $archive_filename";
 
         $this->send_msg('message', 'ipa' . $archive_shell);

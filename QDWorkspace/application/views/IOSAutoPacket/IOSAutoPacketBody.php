@@ -61,7 +61,13 @@
                         <option value="1">是</option>
                     </select>
                 </div>
-
+                <div class="property_div">
+                    <span class="title">配置:&nbsp</span><select name="configure" id="configure">
+                        <option value="Release">Release</option>
+                        <option value="Debug">Debug</option>
+                    </select>
+                </div>
+                
                 <button type="button" id="submit">Packet</button>
             </form>
         </div>
